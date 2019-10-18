@@ -8,12 +8,12 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - BestSellerWrapper
 struct BestSellerWrapper: Codable {
     let results: [BestSeller]
 }
 
-// MARK: - Result
+// MARK: - BestSeller
 struct BestSeller: Codable {
     let listName: String
     let rank: Int
