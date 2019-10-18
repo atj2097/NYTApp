@@ -8,12 +8,12 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - CategoryWrapper
 struct CategoryWrapper: Codable {
     let results: [Result]
 }
 
-// MARK: - Result
+// MARK: - Category
 struct Category: Codable {
     let listName: String
     let listNameEncoded: String
