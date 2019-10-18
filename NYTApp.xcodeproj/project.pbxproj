@@ -32,6 +32,9 @@
 		A5174711235A4B150092C15C /* FavoritePersistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174710235A4B150092C15C /* FavoritePersistManager.swift */; };
 		A5174713235A4B440092C15C /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174712235A4B440092C15C /* PersistenceHelper.swift */; };
 		EA0EF725235A614D00A1D6D0 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF724235A614D00A1D6D0 /* Secrets.swift */; };
+		EA0EF727235A673D00A1D6D0 /* BestSellerJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF726235A673D00A1D6D0 /* BestSellerJSON.json */; };
+		EA0EF729235A678000A1D6D0 /* CategoryJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF728235A678000A1D6D0 /* CategoryJSON.json */; };
+		EA0EF72D235A68B000A1D6D0 /* GoogleBookJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		A5174710235A4B150092C15C /* FavoritePersistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePersistManager.swift; sourceTree = "<group>"; };
 		A5174712235A4B440092C15C /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		EA0EF724235A614D00A1D6D0 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		EA0EF726235A673D00A1D6D0 /* BestSellerJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BestSellerJSON.json; sourceTree = "<group>"; };
+		EA0EF728235A678000A1D6D0 /* CategoryJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CategoryJSON.json; sourceTree = "<group>"; };
+		EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoogleBookJSON.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,9 @@
 			children = (
 				A51746DC235A46710092C15C /* NYTAppTests.swift */,
 				A51746DE235A46710092C15C /* Info.plist */,
+				EA0EF726235A673D00A1D6D0 /* BestSellerJSON.json */,
+				EA0EF728235A678000A1D6D0 /* CategoryJSON.json */,
+				EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */,
 			);
 			path = NYTAppTests;
 			sourceTree = "<group>";
@@ -299,6 +308,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0EF727235A673D00A1D6D0 /* BestSellerJSON.json in Resources */,
+				EA0EF729235A678000A1D6D0 /* CategoryJSON.json in Resources */,
+				EA0EF72D235A68B000A1D6D0 /* GoogleBookJSON.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
