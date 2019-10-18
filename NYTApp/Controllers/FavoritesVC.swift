@@ -9,22 +9,55 @@
 import UIKit
 
 class FavoritesVC: UIViewController {
-
+    
+    // MARK: - UI Objects
+    lazy var favoritesCV: UICollectionView = {
+        let layout = UICollectionViewFlowLayout.init()
+        let cv = UICollectionView(frame:.zero , collectionViewLayout: layout)
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 250, height: 250)
+        cv.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        cv.register(FavoritesCVCell.self, forCellWithReuseIdentifier: "FavoritesCVCell")
+        cv.dataSource = self
+        cv.delegate = self
+        return cv
+    }()
+    
+    // MARK: -Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        addSubViews()
+        configureCVContraints()
+    }
+    
+    // MARK: - private Methods
+    private func addSubViews() {
+        self.view.addSubview(favoritesCV)
+        
+    }
+    
+    // MARK: - Contraint Methods
+    private func configureCVContraints() {
+        favoritesCV.translatesAutoresizingMaskIntoConstraints = false
+        [favoritesCV.topAnchor.constraint(equalTo: self.view.topAnchor),favoritesCV.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),favoritesCV.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),favoritesCV.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)].forEach({$0.isActive = true})
+        
     }
     
 
-    /*
-    // MARK: - Navigation
+   
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+// MARK: - Extensions
+extension FavoritesVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = favoritesCV.dequeueReusableCell(withReuseIdentifier: "FavoritesCVCell", for: indexPath) as? FavoritesCVCell
+        cell?.backgroundColor = .red
+        return cell!
+    }
+    
+    
 }
