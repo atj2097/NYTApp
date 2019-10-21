@@ -44,6 +44,13 @@ class BestSellerCVCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Private Methods
+    private func addSubViews() {
+        contentView.addSubview(bookImage)
+        contentView.addSubview(weeksOnListLabel)
+        contentView.addSubview(descriptionTextView)
+    }
+    
     // MARK: - Contraint Methods
     private func configureBookImageContraints() {
         bookImage.translatesAutoresizingMaskIntoConstraints = false
