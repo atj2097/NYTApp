@@ -1,0 +1,80 @@
+{
+"kind": "books#volumes",
+"totalItems": 1,
+"items": [
+{
+"kind": "books#volume",
+"id": "wnrSwQEACAAJ",
+"etag": "f93DGq/5PVQ",
+"selfLink": "https://www.googleapis.com/books/v1/volumes/wnrSwQEACAAJ",
+"volumeInfo": {
+"title": "The 19th Christmas",
+"authors": [
+"James Patterson",
+"Maxine Paetro"
+],
+"publisher": "Little, Brown",
+"publishedDate": "2019-10-07",
+"description": "If the Women's Murder Club can't be together this Christmas, a killer is to blame. As the holidays approach, Detective Lindsay Boxer and her friends in the Women's Murder Club have much to celebrate. Crime is down. The medical examiner's office is quiet. Even the courts are showing some Christmas spirit. And the news cycle is so slow that journalist Cindy Thomas is on assignment to tell a story about the true meaning of the season for San Francisco. Then a fearsome criminal known only as \"Loman\" seizes control of the headlines. He is planning a deadly surprise for Christmas morning. And he has commissioned dozens of criminal colleagues to take actions that will mask his plans. All that Lindsay and the SFPD can figure out is that Loman's greed -- for riches, for bloodshed, for attention -- is limitless. Solving crimes never happens on schedule, but as this criminal mastermind unleashes credible threats by the hour, the month of December is upended for the Women's Murder Club. Avoiding tragedy is the only holiday miracle they seek.",
+"industryIdentifiers": [
+{
+"type": "ISBN_10",
+"identifier": "0316420271"
+},
+{
+"type": "ISBN_13",
+"identifier": "9780316420273"
+}
+],
+"readingModes": {
+"text": false,
+"image": false
+},
+"pageCount": 368,
+"printType": "BOOK",
+"categories": [
+"Fiction"
+],
+"maturityRating": "NOT_MATURE",
+"allowAnonLogging": false,
+"contentVersion": "preview-1.0.0",
+"panelizationSummary": {
+"containsEpubBubbles": false,
+"containsImageBubbles": false
+},
+"imageLinks": {
+"smallThumbnail": "http://books.google.com/books/content?id=wnrSwQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+"thumbnail": "http://books.google.com/books/content?id=wnrSwQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+},
+"language": "en",
+"previewLink": "http://books.google.com/books?id=wnrSwQEACAAJ&dq=isbn:0316420271&hl=&cd=1&source=gbs_api",
+"infoLink": "http://books.google.com/books?id=wnrSwQEACAAJ&dq=isbn:0316420271&hl=&source=gbs_api",
+"canonicalVolumeLink": "https://books.google.com/books/about/The_19th_Christmas.html?hl=&id=wnrSwQEACAAJ"
+},
+"saleInfo": {
+"country": "US",
+"saleability": "NOT_FOR_SALE",
+"isEbook": false
+},
+"accessInfo": {
+"country": "US",
+"viewability": "NO_PAGES",
+"embeddable": false,
+"publicDomain": false,
+"textToSpeechPermission": "ALLOWED",
+"epub": {
+"isAvailable": false
+},
+"pdf": {
+"isAvailable": false
+},
+"webReaderLink": "http://play.google.com/books/reader?id=wnrSwQEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+"accessViewStatus": "NONE",
+"quoteSharingAllowed": false
+},
+"searchInfo": {
+"textSnippet": "If the Women&#39;s Murder Club can&#39;t be together this Christmas, a killer is to blame."
+}
+}
+]
+}
