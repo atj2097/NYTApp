@@ -26,12 +26,15 @@
 		A5174700235A48C90092C15C /* AppErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51746FF235A48C90092C15C /* AppErrorHandler.swift */; };
 		A5174702235A49020092C15C /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174701235A49020092C15C /* ImageHelper.swift */; };
 		A5174705235A497F0092C15C /* BestSeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174704235A497F0092C15C /* BestSeller.swift */; };
-		A5174707235A498F0092C15C /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174706235A498F0092C15C /* Categories.swift */; };
-		A5174709235A499D0092C15C /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174708235A499D0092C15C /* Book.swift */; };
+		A5174707235A498F0092C15C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174706235A498F0092C15C /* Category.swift */; };
+		A5174709235A499D0092C15C /* GoogleBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174708235A499D0092C15C /* GoogleBook.swift */; };
 		A517470F235A4A7E0092C15C /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517470E235A4A7E0092C15C /* UserDefaultsWrapper.swift */; };
 		A5174711235A4B150092C15C /* FavoritePersistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174710235A4B150092C15C /* FavoritePersistManager.swift */; };
 		A5174713235A4B440092C15C /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174712235A4B440092C15C /* PersistenceHelper.swift */; };
 		EA0EF725235A614D00A1D6D0 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF724235A614D00A1D6D0 /* Secrets.swift */; };
+		EA0EF727235A673D00A1D6D0 /* BestSellerJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF726235A673D00A1D6D0 /* BestSellerJSON.json */; };
+		EA0EF729235A678000A1D6D0 /* CategoryJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF728235A678000A1D6D0 /* CategoryJSON.json */; };
+		EA0EF72D235A68B000A1D6D0 /* GoogleBookJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,12 +71,15 @@
 		A51746FF235A48C90092C15C /* AppErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorHandler.swift; sourceTree = "<group>"; };
 		A5174701235A49020092C15C /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		A5174704235A497F0092C15C /* BestSeller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSeller.swift; sourceTree = "<group>"; };
-		A5174706235A498F0092C15C /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
-		A5174708235A499D0092C15C /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		A5174706235A498F0092C15C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		A5174708235A499D0092C15C /* GoogleBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBook.swift; sourceTree = "<group>"; };
 		A517470E235A4A7E0092C15C /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		A5174710235A4B150092C15C /* FavoritePersistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePersistManager.swift; sourceTree = "<group>"; };
 		A5174712235A4B440092C15C /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		EA0EF724235A614D00A1D6D0 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		EA0EF726235A673D00A1D6D0 /* BestSellerJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BestSellerJSON.json; sourceTree = "<group>"; };
+		EA0EF728235A678000A1D6D0 /* CategoryJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CategoryJSON.json; sourceTree = "<group>"; };
+		EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoogleBookJSON.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,9 @@
 			children = (
 				A51746DC235A46710092C15C /* NYTAppTests.swift */,
 				A51746DE235A46710092C15C /* Info.plist */,
+				EA0EF726235A673D00A1D6D0 /* BestSellerJSON.json */,
+				EA0EF728235A678000A1D6D0 /* CategoryJSON.json */,
+				EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */,
 			);
 			path = NYTAppTests;
 			sourceTree = "<group>";
@@ -185,8 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				A5174704235A497F0092C15C /* BestSeller.swift */,
-				A5174706235A498F0092C15C /* Categories.swift */,
-				A5174708235A499D0092C15C /* Book.swift */,
+				A5174706235A498F0092C15C /* Category.swift */,
+				A5174708235A499D0092C15C /* GoogleBook.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +308,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0EF727235A673D00A1D6D0 /* BestSellerJSON.json in Resources */,
+				EA0EF729235A678000A1D6D0 /* CategoryJSON.json in Resources */,
+				EA0EF72D235A68B000A1D6D0 /* GoogleBookJSON.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +327,7 @@
 				A51746FB235A486C0092C15C /* CategoriesAPIClient.swift in Sources */,
 				A51746C6235A466B0092C15C /* AppDelegate.swift in Sources */,
 				A5174711235A4B150092C15C /* FavoritePersistManager.swift in Sources */,
-				A5174709235A499D0092C15C /* Book.swift in Sources */,
+				A5174709235A499D0092C15C /* GoogleBook.swift in Sources */,
 				A5174713235A4B440092C15C /* PersistenceHelper.swift in Sources */,
 				A51746F9235A48550092C15C /* BestSellersAPIClient.swift in Sources */,
 				A5174705235A497F0092C15C /* BestSeller.swift in Sources */,
@@ -327,7 +339,7 @@
 				A5174702235A49020092C15C /* ImageHelper.swift in Sources */,
 				A51746FD235A48830092C15C /* GoogleBooksAPIClient.swift in Sources */,
 				A517470F235A4A7E0092C15C /* UserDefaultsWrapper.swift in Sources */,
-				A5174707235A498F0092C15C /* Categories.swift in Sources */,
+				A5174707235A498F0092C15C /* Category.swift in Sources */,
 				A51746F2235A48000092C15C /* BestSellerCVCell.swift in Sources */,
 				A5174700235A48C90092C15C /* AppErrorHandler.swift in Sources */,
 				EA0EF725235A614D00A1D6D0 /* Secrets.swift in Sources */,

@@ -10,21 +10,44 @@ import UIKit
 
 class SettingsVC: UIViewController {
 
+    // MARK: - UI Objects
+    lazy var categoryPicker: UIPickerView = {
+        let picker = UIPickerView(frame: .zero)
+        picker.backgroundColor = .white
+        picker.delegate = self
+        picker.dataSource = self
+        return picker
+    }()
+    
+    // MARK: Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        addSubviews()
+        configurePickerContraints()
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: Constraint Methods
+    private func addSubviews() {
+        view.addSubview(categoryPicker)
     }
-    */
+    
+    private func configurePickerContraints() {
+        categoryPicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        [categoryPicker.topAnchor.constraint(equalTo: self.view.topAnchor), categoryPicker.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryPicker.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryPicker.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)].forEach({$0.isActive = true})
+    }
+}
 
+// MARK: Extensions
+extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 10
+    }
+
+    
 }
