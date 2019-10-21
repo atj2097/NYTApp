@@ -10,4 +10,26 @@ import UIKit
 
 class BestSellerCVCell: UICollectionViewCell {
     
+    // MARK: - UI Objects
+    lazy var bookImage: UIImageView = {
+        let iv = UIImageView()
+        return iv
+    }()
+    
+    lazy var weeksOnListLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var descriptionTextView: UITextView = {
+      let tv = UITextView()
+        tv.isScrollEnabled = true
+        tv.backgroundColor = .white
+        tv.textColor = .black
+        return tv
+    }()
+    
+    // MARK: -
 }
