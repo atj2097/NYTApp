@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol FavoriteCellDelegate: AnyObject {
+    func showActionSheet(tag: Int)
+}
