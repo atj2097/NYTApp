@@ -9,12 +9,17 @@
 import Foundation
 
 // MARK: - Welcome
-struct Welcome: Codable {
-    let items: [Item]
+struct BookWrapper: Codable {
+    let items: [GoogleBook]
+    
+    static func decodeGoogleBookFromData(from jsonData: Data) throws -> [GoogleBook] {
+      let response = try JSONDecoder().decode(BookWrapper.self, from: jsonData)
+        return response.items
+    }
 }
 
 // MARK: - Item
-struct Item: Codable {
+struct GoogleBook: Codable {
     let volumeInfo: VolumeInfo
 }
 
