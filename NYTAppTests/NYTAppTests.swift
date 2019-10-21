@@ -48,5 +48,35 @@ class NYTAppTests: XCTestCase {
         // Assert
         XCTAssertTrue(bestSellers.count == 15, "Was expecting 15 best sellers, but found \(bestSellers.count)")
     }
+    
+    func testCategoryModelData() {
+        // Arrange
+        guard let jsonPath = Bundle.main.path(forResource: "CategoryJSON", ofType: "json") else {
+            XCTFail("Could not find CategoryJSON file")
+            return
+        }
+        
+        let jsonURL = URL(fileURLWithPath: jsonPath)
+        var categotyJSONData = Data()
+        
+        do {
+            categotyJSONData = try Data(contentsOf: jsonURL)
+        } catch {
+            XCTFail("\(error)")
+        }
+        
+        // Act
+        var categories = [Category]()
+        
+        do {
+            let categoriesInfo = try CategoryWrapper.decodeCategoriesFromData(from: categotyJSONData)
+            categories = categoriesInfo
+        } catch {
+            XCTFail("\(error)")
+        }
+        
+        // Assert
+        XCTAssertTrue(categories.count == 59, "Was expecting 59 best sellers, but found \(categories.count)")
+    }
             
 }
