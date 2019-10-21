@@ -37,6 +37,13 @@ class FavoritesCVCell: UICollectionViewCell {
         return button
     }()
     
+    // MARK: - Actions
+    @objc func optionsButtonPressed(_ sender: UIButton) {
+        delegate?.showActionSheet(tag: sender.tag)
+    }
+    
+    weak var delegate: FavoriteCellDelegate?
+    
     //MARK: - Override Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
