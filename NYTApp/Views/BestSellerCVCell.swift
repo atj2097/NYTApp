@@ -35,6 +35,7 @@ class BestSellerCVCell: UICollectionViewCell {
     //MARK: - Override Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubViews()
         configureBookImageContraints()
         configureListLabelContraints()
         configureDescriptionTextViewContraints()
