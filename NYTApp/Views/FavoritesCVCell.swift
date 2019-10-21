@@ -69,7 +69,7 @@ class FavoritesCVCell: UICollectionViewCell {
     private func configureOptionsButtonContraints() {
         optionsButton.translatesAutoresizingMaskIntoConstraints = false
         
-        [optionsButton.topAnchor.constraint(equalTo: contentView.topAnchor), optionsButton.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor), optionsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), optionsButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.25)].forEach({$0.isActive = true})
+        [optionsButton.topAnchor.constraint(equalTo: contentView.topAnchor), optionsButton.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor), optionsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), optionsButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2)].forEach({$0.isActive = true})
     }
     
     private func configureListLabelContraints() {
