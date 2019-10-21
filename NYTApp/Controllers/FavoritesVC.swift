@@ -72,10 +72,12 @@ extension FavoritesVC: FavoriteCellDelegate {
         
         let deleteAction = UIAlertAction.init(title: "Delete", style: .destructive) { (action) in
             let deletedImageAndDescription = self.faveBookImageAndDescrip[tag]
-            let deletedWeeksOnList = self.faveBookWeeksOnlist[tag]
+            
+            // TODO: - Determine whether we need use the below data as well to delete the entire cell
+//            let deletedWeeksOnList = self.faveBookWeeksOnlist[tag]
             
             // TODO: - Use persistence and eliminate print statement
-            print("I just deleted \(deletedImageAndDescription) and \(deletedWeeksOnList)")
+            print("I just deleted \(deletedImageAndDescription)")
         }
         
         let seeOnAmazonAction = UIAlertAction.init(title: "See on Amazon", style: .default) { (action) in
