@@ -38,10 +38,15 @@ class BestSellersVC: UIViewController {
         }
     }
     
-    var categories = [Category]()
+    var categories = [Category]() {
+        didSet {
+            categoryPicker.reloadAllComponents()
+        }
+    }
     
     var currentCategory: String = "combined-print-and-e-book-fiction"
-    
+
+    var googleBook: VolumeInfo!
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -54,7 +59,6 @@ class BestSellersVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCategoriesData()
-        loadBestSellerData()
     }
     
     // MARK: - Private functions
@@ -70,12 +74,11 @@ class BestSellersVC: UIViewController {
                     print(error)
                 case .success(let data):
                     self.categories = data
-                    print(self.categories.count)
+                    self.loadBestSellerData()
                 }
             }
         }
     }
-    
     
     private func loadBestSellerData() {
         let urlStr = BestSellersAPIClient.getSearchResultsURLStr(from: currentCategory)
@@ -91,8 +94,22 @@ class BestSellersVC: UIViewController {
                 }
             }
         }
+    }
     
-    
+    private func loadGoogleBooksData(from isnb: String) {
+        let urlStr = GoogleBooksAPIClient.getSearchResultsURLStr(from: isnb)
+        
+        GoogleBooksAPIClient.manager.getGoogleBooks(urlStr: urlStr) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    //TODO: Add Alert, cannot load data
+                    print(error)
+                case .success(let data):
+                    self.googleBook = data[0].volumeInfo
+                }
+            }
+        }
     }
     
     // MARK: - Contraint Methods
@@ -139,10 +156,23 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as! BestSellerCVCell
         let currentBestSeller = bestSellers[indexPath.row]
+        loadGoogleBooksData(from: currentBestSeller.bookDetails[0].primaryIsbn10)
         
         cell.backgroundColor = .white
         cell.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
         cell.descriptionTextView.text = "\(currentBestSeller.bookDetails[0].bookDetailDescription)"
+        
+        let imageUrlStr = googleBook.imageLinks.thumbnail
+        
+        ImageHelper.shared.getImage(urlStr: imageUrlStr) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let imageFromUrl):
+                cell.bookImage.image = imageFromUrl
+            }
+        }
+        
         
         return cell
     }
