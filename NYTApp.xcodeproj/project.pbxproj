@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A51746C6235A466B0092C15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51746C5235A466B0092C15C /* AppDelegate.swift */; };
 		A51746C8235A466B0092C15C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51746C7235A466B0092C15C /* SceneDelegate.swift */; };
-		A51746CA235A466B0092C15C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51746C9235A466B0092C15C /* ViewController.swift */; };
 		A51746CF235A46700092C15C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A51746CE235A46700092C15C /* Assets.xcassets */; };
 		A51746D2235A46700092C15C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A51746D0235A46700092C15C /* LaunchScreen.storyboard */; };
 		A51746DD235A46710092C15C /* NYTAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51746DC235A46710092C15C /* NYTAppTests.swift */; };
@@ -57,7 +56,6 @@
 		A51746C2235A466B0092C15C /* NYTApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51746C5235A466B0092C15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A51746C7235A466B0092C15C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A51746C9235A466B0092C15C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A51746CE235A46700092C15C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A51746D1235A46700092C15C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A51746D3235A46710092C15C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				A51746E7235A47480092C15C /* Controllers */,
 				A51746C5235A466B0092C15C /* AppDelegate.swift */,
 				A51746C7235A466B0092C15C /* SceneDelegate.swift */,
-				A51746C9235A466B0092C15C /* ViewController.swift */,
 				A51746CE235A46700092C15C /* Assets.xcassets */,
 				A51746D0235A46700092C15C /* LaunchScreen.storyboard */,
 				A51746D3235A46710092C15C /* Info.plist */,
@@ -331,7 +328,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A51746EB235A47930092C15C /* FavoritesVC.swift in Sources */,
-				A51746CA235A466B0092C15C /* ViewController.swift in Sources */,
 				A51746F7235A48400092C15C /* NetworkHelper.swift in Sources */,
 				A51746FB235A486C0092C15C /* CategoriesAPIClient.swift in Sources */,
 				A51746C6235A466B0092C15C /* AppDelegate.swift in Sources */,
