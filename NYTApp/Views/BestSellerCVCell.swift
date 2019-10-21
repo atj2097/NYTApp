@@ -32,6 +32,18 @@ class BestSellerCVCell: UICollectionViewCell {
         return tv
     }()
     
+    //MARK: - Override Inits
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureBookImageContraints()
+        configureListLabelContraints()
+        configureDescriptionTextViewContraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Contraint Methods
     private func configureBookImageContraints() {
         bookImage.translatesAutoresizingMaskIntoConstraints = false
@@ -45,5 +57,9 @@ class BestSellerCVCell: UICollectionViewCell {
         [weeksOnListLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor), weeksOnListLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor), weeksOnListLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), weeksOnListLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1)].forEach({$0.isActive = true})
     }
     
-    
+    private func configureDescriptionTextViewContraints() {
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        [descriptionTextView.topAnchor.constraint(equalTo: weeksOnListLabel.bottomAnchor), descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor), descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), descriptionTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)].forEach({$0.isActive = true})
+    }
 }
