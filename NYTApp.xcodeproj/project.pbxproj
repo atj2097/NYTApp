@@ -179,9 +179,6 @@
 				A51746FF235A48C90092C15C /* AppErrorHandler.swift */,
 				A5174701235A49020092C15C /* ImageHelper.swift */,
 				A51746FE235A48A10092C15C /* APIClients */,
-				A51746FA235A486C0092C15C /* CategoriesAPIClient.swift */,
-				A51746F8235A48550092C15C /* BestSellersAPIClient.swift */,
-				A51746FC235A48830092C15C /* GoogleBooksAPIClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -189,6 +186,9 @@
 		A51746FE235A48A10092C15C /* APIClients */ = {
 			isa = PBXGroup;
 			children = (
+				A51746F8235A48550092C15C /* BestSellersAPIClient.swift */,
+				A51746FA235A486C0092C15C /* CategoriesAPIClient.swift */,
+				A51746FC235A48830092C15C /* GoogleBooksAPIClient.swift */,
 			);
 			path = APIClients;
 			sourceTree = "<group>";
