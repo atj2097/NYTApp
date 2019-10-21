@@ -41,11 +41,17 @@ class BestSellersVC: UIViewController {
     var categories = [Category]() {
         didSet {
             categoryPicker.reloadAllComponents()
+            loadBestSellerData()
         }
     }
     
     var currentCategory: String = "combined-print-and-e-book-fiction"
 
+    var currentIsbn: String? = nil {
+        didSet {
+            loadGoogleBooksData(from: currentIsbn ?? "")
+        }
+    }
     var googleBook: VolumeInfo!
     
     // MARK: - Lifecycle Methods
@@ -74,7 +80,6 @@ class BestSellersVC: UIViewController {
                     print(error)
                 case .success(let data):
                     self.categories = data
-                    self.loadBestSellerData()
                 }
             }
         }
@@ -156,7 +161,8 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as! BestSellerCVCell
         let currentBestSeller = bestSellers[indexPath.row]
-        loadGoogleBooksData(from: currentBestSeller.bookDetails[0].primaryIsbn10)
+        currentIsbn = currentBestSeller.bookDetails[0].primaryIsbn10
+        
         
         cell.backgroundColor = .white
         cell.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
