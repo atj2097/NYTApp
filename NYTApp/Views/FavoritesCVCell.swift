@@ -31,6 +31,12 @@ class FavoritesCVCell: UICollectionViewCell {
         return tv
     }()
     
+    lazy var optionsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("...", for: .normal)
+        return button
+    }()
+    
     //MARK: - Override Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
