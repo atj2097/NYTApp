@@ -31,6 +31,13 @@ class BestSellersVC: UIViewController {
         return picker
     }()
 
+    // MARK: - Internal Properties
+    var bestSellers = [BestSeller]() {
+        didSet {
+            bestSellerCV.reloadData()
+        }
+    }
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +48,7 @@ class BestSellersVC: UIViewController {
     }
     
     
-    // MARK: Contraint Methods
+    // MARK: - Contraint Methods
     private func addSubViews() {
         self.view.addSubview(bestSellerCV)
         self.view.addSubview(categoryPicker)
