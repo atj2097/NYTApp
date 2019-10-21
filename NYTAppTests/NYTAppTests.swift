@@ -78,5 +78,34 @@ class NYTAppTests: XCTestCase {
         // Assert
         XCTAssertTrue(categories.count == 59, "Was expecting 59 best sellers, but found \(categories.count)")
     }
-            
+        
+    func testGoogleBooksModelData() {
+        // Arrange
+        guard let jsonPath = Bundle.main.path(forResource: "GoogleBookJSON", ofType: "json") else {
+            XCTFail("Could not find GoogleBookJSON file")
+            return
+        }
+        
+        let jsonURL = URL(fileURLWithPath: jsonPath)
+        var googleBookJSONData = Data()
+        
+        do {
+            googleBookJSONData = try Data(contentsOf: jsonURL)
+        } catch {
+            XCTFail("\(error)")
+        }
+        
+        // Act
+        var googleBooks = [GoogleBook]()
+        
+        do {
+            let googleBookInfo = try BookWrapper.decodeGoogleBookFromData(from: googleBookJSONData)
+            googleBooks = googleBookInfo
+        } catch {
+            XCTFail("\(error)")
+        }
+        
+        // Assert
+        XCTAssertTrue(googleBooks.count == 1, "Was expecting 1 google book info, but found \(googleBooks.count)")
+    }
 }
