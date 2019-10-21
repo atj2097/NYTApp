@@ -38,6 +38,8 @@ class BestSellersVC: UIViewController {
         }
     }
     
+    var categories = [Category]()
+    
     var currentCategory: String = "combined-print-and-e-book-fiction"
     
     // MARK: - Lifecycle Methods
@@ -50,10 +52,30 @@ class BestSellersVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadCategoriesData()
         loadBestSellerData()
     }
     
     // MARK: - Private functions
+    
+    private func loadCategoriesData() {
+        let urlStr = CategoriesAPIClient.getSearchResultsURLStr()
+        
+        CategoriesAPIClient.manager.getCategories(urlStr: urlStr) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    //TODO: Add Alert, cannot load data
+                    print(error)
+                case .success(let data):
+                    self.categories = data
+                    print(self.categories.count)
+                }
+            }
+        }
+    }
+    
+    
     private func loadBestSellerData() {
 
         let urlStr = BestSellersAPIClient.getSearchResultsURLStr(from: currentCategory)
@@ -115,9 +137,9 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as? BestSellerCVCell
-        cell?.backgroundColor = .white
-        return cell!
+        let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as! BestSellerCVCell
+        cell.backgroundColor = .white
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
