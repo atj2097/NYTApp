@@ -79,7 +79,7 @@ class NYTAppTests: XCTestCase {
         XCTAssertTrue(categories.count == 59, "Was expecting 59 best sellers, but found \(categories.count)")
     }
         
-    func testGoogleBooksModelData() {
+    func g() {
         // Arrange
         guard let jsonPath = Bundle.main.path(forResource: "GoogleBookJSON", ofType: "json") else {
             XCTFail("Could not find GoogleBookJSON file")
