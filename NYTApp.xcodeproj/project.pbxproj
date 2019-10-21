@@ -35,6 +35,10 @@
 		EA0EF727235A673D00A1D6D0 /* BestSellerJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF726235A673D00A1D6D0 /* BestSellerJSON.json */; };
 		EA0EF729235A678000A1D6D0 /* CategoryJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF728235A678000A1D6D0 /* CategoryJSON.json */; };
 		EA0EF72D235A68B000A1D6D0 /* GoogleBookJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */; };
+		EA0EF72E235DFF6300A1D6D0 /* BestSellerJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF726235A673D00A1D6D0 /* BestSellerJSON.json */; };
+		EA0EF72F235DFF6600A1D6D0 /* CategoryJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF728235A678000A1D6D0 /* CategoryJSON.json */; };
+		EA0EF730235DFF6800A1D6D0 /* GoogleBookJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */; };
+		EA0EF731235DFF6C00A1D6D0 /* BestSeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174704235A497F0092C15C /* BestSeller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,8 +303,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0EF730235DFF6800A1D6D0 /* GoogleBookJSON.json in Resources */,
 				A51746D2235A46700092C15C /* LaunchScreen.storyboard in Resources */,
+				EA0EF72F235DFF6600A1D6D0 /* CategoryJSON.json in Resources */,
 				A51746CF235A46700092C15C /* Assets.xcassets in Resources */,
+				EA0EF72E235DFF6300A1D6D0 /* BestSellerJSON.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0EF731235DFF6C00A1D6D0 /* BestSeller.swift in Sources */,
 				A51746DD235A46710092C15C /* NYTAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
