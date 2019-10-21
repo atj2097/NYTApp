@@ -57,10 +57,10 @@ class NYTAppTests: XCTestCase {
         }
         
         let jsonURL = URL(fileURLWithPath: jsonPath)
-        var categotyJSONData = Data()
+        var categoryJSONData = Data()
         
         do {
-            categotyJSONData = try Data(contentsOf: jsonURL)
+            categoryJSONData = try Data(contentsOf: jsonURL)
         } catch {
             XCTFail("\(error)")
         }
@@ -69,7 +69,7 @@ class NYTAppTests: XCTestCase {
         var categories = [Category]()
         
         do {
-            let categoriesInfo = try CategoryWrapper.decodeCategoriesFromData(from: categotyJSONData)
+            let categoriesInfo = try CategoryWrapper.decodeCategoriesFromData(from: categoryJSONData)
             categories = categoriesInfo
         } catch {
             XCTFail("\(error)")
