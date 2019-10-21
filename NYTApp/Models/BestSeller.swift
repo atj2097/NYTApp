@@ -13,7 +13,7 @@ struct BestSellerWrapper: Codable {
     let results: [BestSeller]
     
     static func decodeBestSellerFromData(from jsonData: Data) throws -> [BestSeller] {
-    let response = try JSONDecoder().decode(BestSellerWrapper.self, from: jsonData)
+        let response = try JSONDecoder().decode(BestSellerWrapper.self, from: jsonData)
         return response.results
     }
 
