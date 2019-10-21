@@ -38,6 +38,8 @@ class BestSellersVC: UIViewController {
         }
     }
     
+    var currentCategory: String = "combined-print-and-e-book-fiction"
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,29 @@ class BestSellersVC: UIViewController {
         configurePickerConstriants()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadBestSellerData()
+    }
+    
+    // MARK: - Private functions
+    private func loadBestSellerData() {
+
+        let urlStr = BestSellersAPIClient.getSearchResultsURLStr(from: currentCategory)
+    
+        BestSellersAPIClient.manager.getBestSellers(urlStr: urlStr) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    //TODO: Add Alert, cannot load data
+                    print(error)
+                case .success(let data):
+                    self.bestSellers = data
+                }
+            }
+        }
+    
+    
+    }
     
     // MARK: - Contraint Methods
     private func addSubViews() {
@@ -86,7 +111,7 @@ extension BestSellersVC: UIPickerViewDataSource, UIPickerViewDelegate {
 extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO: Build out cells
-        return 10
+        return bestSellers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
