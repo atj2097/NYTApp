@@ -40,11 +40,23 @@ class FavoritesCVCell: UICollectionViewCell {
     //MARK: - Override Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        addSubViews()
+        configureBookImageContraints()
+        configureOptionsButtonContraints()
+        configureListLabelContraints()
+        configureDescriptionTextViewContraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Methods
+    private func addSubViews() {
+        contentView.addSubview(bookImage)
+        contentView.addSubview(weeksOnListLabel)
+        contentView.addSubview(descriptionTextView)
+        contentView.addSubview(optionsButton)
     }
     
     // MARK: - Contraint Methods
