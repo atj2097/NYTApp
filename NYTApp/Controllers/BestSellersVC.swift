@@ -42,6 +42,7 @@ class BestSellersVC: UIViewController {
     
     var currentCategory: String = "combined-print-and-e-book-fiction"
     
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +78,6 @@ class BestSellersVC: UIViewController {
     
     
     private func loadBestSellerData() {
-
         let urlStr = BestSellersAPIClient.getSearchResultsURLStr(from: currentCategory)
     
         BestSellersAPIClient.manager.getBestSellers(urlStr: urlStr) { (result) in
@@ -138,7 +138,12 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as! BestSellerCVCell
+        let currentBestSeller = bestSellers[indexPath.row]
+        
         cell.backgroundColor = .white
+        cell.weeksOnListLabel.text = "Best seller for \(currentBestSeller.weeksOnList) weeks"
+        cell.descriptionTextView.text = "\(currentBestSeller.bookDetails[0].bookDetailDescription)"
+        
         return cell
     }
     
