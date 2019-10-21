@@ -60,6 +60,8 @@ extension FavoritesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = favoritesCV.dequeueReusableCell(withReuseIdentifier: "FavoritesCVCell", for: indexPath) as? FavoritesCVCell
         cell?.backgroundColor = .red
+        cell?.delegate = self
+        cell?.optionsButton.tag = indexPath.row
         return cell!
     }
     
@@ -89,7 +91,7 @@ extension FavoritesVC: FavoriteCellDelegate {
         optionsMenu.addAction(deleteAction)
         optionsMenu.addAction(seeOnAmazonAction)
         optionsMenu.addAction(cancelAction)
-        present(optionsMenu, animated: true, completion: nil)
+        present(optionsMenu, animated: true)
     }
     
     
