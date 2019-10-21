@@ -9,5 +9,35 @@
 import UIKit
 
 class FavoritesCVCell: UICollectionViewCell {
+    // MARK: - UI Objects
+    lazy var bookImage: UIImageView = {
+        let iv = UIImageView()
+        iv.backgroundColor = .red
+        return iv
+    }()
     
+    lazy var weeksOnListLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var descriptionTextView: UITextView = {
+      let tv = UITextView()
+        tv.isScrollEnabled = true
+        tv.backgroundColor = .white
+        tv.textColor = .black
+        return tv
+    }()
+    
+    //MARK: - Override Inits
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
