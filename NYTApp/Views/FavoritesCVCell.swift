@@ -59,4 +59,10 @@ class FavoritesCVCell: UICollectionViewCell {
         
         [weeksOnListLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor), weeksOnListLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor), weeksOnListLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), weeksOnListLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1)].forEach({$0.isActive = true})
     }
+    
+    private func configureDescriptionTextViewContraints() {
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        [descriptionTextView.topAnchor.constraint(equalTo: weeksOnListLabel.bottomAnchor), descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor), descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), descriptionTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)].forEach({$0.isActive = true})
+    }
 }
