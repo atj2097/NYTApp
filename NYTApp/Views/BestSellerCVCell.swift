@@ -38,4 +38,12 @@ class BestSellerCVCell: UICollectionViewCell {
         
         [bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0), bookImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor), bookImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5), bookImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5)].forEach({$0.isActive = true})
     }
+    
+    private func configureListLabelContraints() {
+        weeksOnListLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        [weeksOnListLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor), weeksOnListLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor), weeksOnListLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), weeksOnListLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1)].forEach({$0.isActive = true})
+    }
+    
+    
 }
