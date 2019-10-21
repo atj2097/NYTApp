@@ -34,6 +34,7 @@ class FavoritesCVCell: UICollectionViewCell {
     lazy var optionsButton: UIButton = {
         let button = UIButton()
         button.setTitle("...", for: .normal)
+        button.addTarget(self, action: #selector(optionsButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
     
