@@ -9,7 +9,12 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-
+    var categories = [Category]() {
+        didSet {
+            categoryPicker.reloadAllComponents()
+        }
+    }
+    
     // MARK: - UI Objects
     lazy var categoryPicker: UIPickerView = {
         let picker = UIPickerView(frame: .zero)
@@ -20,13 +25,31 @@ class SettingsVC: UIViewController {
     }()
     
     // MARK: Lifecycle methods
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         configurePickerContraints()
     }
     
-
+    func loadData() {
+        let url = CategoriesAPIClient.getSearchResultsURLStr()
+        CategoriesAPIClient.manager.getCategories(urlStr: url, completionHandler: {(result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let category):
+                    self.categories = category
+                    print(self.categories.count)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+        })
+    }
+    
     //MARK: Constraint Methods
     private func addSubviews() {
         view.addSubview(categoryPicker)
@@ -46,8 +69,29 @@ extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return categories.count
     }
-
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return categories[row].listName
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let category = categories[row].listName
+        print(category)
+        UserDefaultsWrapper.manager.storeFavCats(favCat: category)
+        let alertController = UIAlertController(title: "New Favorite!", message: "", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+            print("You've pressed OK");
+        }
+        alertController.addAction(action1)
+        self.present(alertController, animated: true, completion: nil)
+        print(UserDefaultsWrapper.manager.getFavCats()!)
+        
+    }
+    
+    
+    
     
 }
