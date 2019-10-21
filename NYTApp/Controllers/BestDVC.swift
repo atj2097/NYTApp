@@ -12,31 +12,76 @@ class BestDVC: UIViewController {
     
     // MARK: - UI Objects
     lazy var bookImage: UIImageView = {
-        var book = UIImageView(frame: .zero)
-        book.image = #imageLiteral(resourceName: <#T##String#>)
+        var book = UIImageView()
         return book
     }()
-
+    
+    lazy var textField: UITextView = {
+        let textField = UITextView(frame: .zero)
+        textField.text = ""
+        textField.textColor = .black
+        textField.isScrollEnabled = true
+        textField.font = UIFont.init(name: "ArialMT", size: 12)
+        textField.textAlignment = .center
+        textField.backgroundColor = .clear
+        return textField
+    }()
+    
+    lazy var amazonIcon: UIButton = {
+        var amazonIcon = UIButton(frame: .zero)
+        amazonIcon.setBackgroundImage(UIImage(named: "amazon-512"), for: .normal)
+        amazonIcon.backgroundColor = .clear
+        amazonIcon.addTarget(self, action: #selector(amazonLink), for: .touchUpInside)
+        return amazonIcon
+    }()
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
         setUpBookImage()
-
+        self.view.backgroundColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addToFavorites))
+        let add = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addToFavorites))
+        navigationItem.rightBarButtonItems = [add]
+        //nav bar title
+        navigationItem.title = "insertBookVariable"
+    }
+    
+    //MARK: - Objective C Functions
+    
+    @objc func addToFavorites() {
+        
+        
+    }
+    
+    @objc func amazonLink() {
+        
     }
     
     // MARK: - Contraint Methods
     private func addSubViews() {
         self.view.addSubview(bookImage)
+        self.view.addSubview(textField)
+        self.view.addSubview(amazonIcon)
     }
     
     private func setUpBookImage() {
+        //Book Image
         bookImage.translatesAutoresizingMaskIntoConstraints = false
-        [bookImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),bookImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 20),bookImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20), bookImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.25)].forEach({$0.isActive = true})
+        [bookImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),bookImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor), bookImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.40), bookImage.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75)].forEach({$0.isActive = true})
+        
+        //Text Field
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        [textField.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 20),textField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),textField.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 45),textField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0)].forEach({$0.isActive = true})
+        
+        //Button
+        amazonIcon.translatesAutoresizingMaskIntoConstraints = false
+        [amazonIcon.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 675),amazonIcon.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),amazonIcon.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),amazonIcon.widthAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)].forEach({$0.isActive = true})
         
     }
     
-
+    
 }
 
 // MARK: - Extensions

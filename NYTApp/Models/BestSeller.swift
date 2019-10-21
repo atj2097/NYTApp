@@ -11,6 +11,12 @@ import Foundation
 // MARK: - BestSellerWrapper
 struct BestSellerWrapper: Codable {
     let results: [BestSeller]
+    
+    static func decodeBestSellerFromData(from jsonData: Data) throws -> [BestSeller] {
+        let response = try JSONDecoder().decode(BestSellerWrapper.self, from: jsonData)
+        return response.results
+    }
+
 }
 
 // MARK: - BestSeller
@@ -21,7 +27,7 @@ struct BestSeller: Codable {
     let amazonProductURL: String
     let bookDetails: [BookDetail]
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case listName = "list_name"
         case rank
         case weeksOnList = "weeks_on_list"
@@ -39,7 +45,7 @@ struct BookDetail: Codable {
     let publisher: String
     let primaryIsbn10: String
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case title
         case bookDetailDescription = "description"
         case author

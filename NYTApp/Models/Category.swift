@@ -11,6 +11,11 @@ import Foundation
 // MARK: - CategoryWrapper
 struct CategoryWrapper: Codable {
     let results: [Category]
+    
+    static func decodeCategoriesFromData(from jsonData: Data) throws -> [Category] {
+        let response = try JSONDecoder().decode(CategoryWrapper.self, from: jsonData)
+        return response.results
+      }
 }
 
 // MARK: - Category
