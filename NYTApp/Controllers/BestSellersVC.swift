@@ -141,7 +141,7 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         let currentBestSeller = bestSellers[indexPath.row]
         
         cell.backgroundColor = .white
-        cell.weeksOnListLabel.text = "Best seller for \(currentBestSeller.weeksOnList) weeks"
+        cell.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
         cell.descriptionTextView.text = "\(currentBestSeller.bookDetails[0].bookDetailDescription)"
         
         return cell
