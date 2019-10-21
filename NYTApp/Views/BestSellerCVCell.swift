@@ -13,6 +13,7 @@ class BestSellerCVCell: UICollectionViewCell {
     // MARK: - UI Objects
     lazy var bookImage: UIImageView = {
         let iv = UIImageView()
+        iv.backgroundColor = .red
         return iv
     }()
     
@@ -31,5 +32,10 @@ class BestSellerCVCell: UICollectionViewCell {
         return tv
     }()
     
-    // MARK: -
+    // MARK: - Contraint Methods
+    private func configureBookImageContraints() {
+        bookImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        [bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0), bookImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor), bookImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5), bookImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5)].forEach({$0.isActive = true})
+    }
 }
