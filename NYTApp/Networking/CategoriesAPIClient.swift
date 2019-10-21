@@ -8,23 +8,32 @@
 
 import Foundation
 
-final class CategoriesAPIClient {
-    private init() {}
+final class NYTCategoriesAPIClient {
     
-    static func getAllCategories(completionHandler: @escaping (AppError?, [Category]?) -> Void) {
-        let endpointURLString = "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(Secrets.key)"
-        NetworkHelper.manager.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
-            if let appError = appError {
-                completionHandler(appError, nil)
-            } else if let data = data {
-                do {
-                    let categoryData = try JSONDecoder().decode(Category.CategoryData.self, from: data)
-                    completionHandler(nil, categoryData.results)
-                } catch {
-                    completionHandler(AppError.jsonDecodingError(error), nil)
-                }
+static func getCategories(completionHandler: @escaping (AppError?, [Category]?) -> Void) {
+    
+    let URL =
+    
+    "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(Secrets.sunniNYTAPIKey)"
+    
+    NetworkHelper.manager.performDataTask(withUrl: URL) { (AppError, Data) in
+        if let AppError = AppError {
+        
+            completionHandler(AppError, nil)
+            
+        } else if let data = Data {
+            
+            do {
+                let categoryData = try JSONDecoder().decode(Category.CategoryWrapper.self, from: data)
+                
+                completionHandler(nil, categoryData.results)
+                
+            } catch {
+                
+                completionHandler(AppError.jsonDecodingErorr(error), nil)
             }
         }
+        
     }
-    
+}
 }
