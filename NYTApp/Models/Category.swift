@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - CategoryWrapper
 struct CategoryWrapper: Codable {
-    let results: [Result]
+    let results: [Category]
 }
 
 // MARK: - Category
