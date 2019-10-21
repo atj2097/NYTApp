@@ -26,7 +26,6 @@ class BestSellersVC: UIViewController {
     lazy var categoryPicker: UIPickerView = {
         let picker = UIPickerView(frame: .zero)
         picker.backgroundColor = .white
-      
         picker.delegate = self
         picker.dataSource = self
         return picker
