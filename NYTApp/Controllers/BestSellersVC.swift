@@ -53,11 +53,12 @@ class BestSellersVC: UIViewController {
     }
     var googleBook: VolumeInfo!
     
+    
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-         currentCategory = "combined-print-and-e-book-fiction."
         addSubViews()
         configureBestSellerCV()
         configurePickerConstriants()
@@ -65,9 +66,20 @@ class BestSellersVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCategoriesData()
+        loadUserDefaults()
     }
     
     // MARK: - Private functions
+    
+    private func loadUserDefaults() {
+        if UserDefaultsWrapper.manager.getFavCats() != nil {
+        currentCategory = UserDefaultsWrapper.manager.getFavCats()!
+        }
+        else {
+            currentCategory = "manga"
+        }
+    }
+    
     
     private func loadCategoriesData() {
         let urlStr = CategoriesAPIClient.getSearchResultsURLStr()
@@ -76,7 +88,6 @@ class BestSellersVC: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    self.showCategoryErrorAlert()
                     print("CategoriesAPIClient: \(error)")
                 case .success(let data):
                     self.categories = data
@@ -92,7 +103,7 @@ class BestSellersVC: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    self.showBestSellerErrorAlert()
+                    print(error)
                     print("BestSellerAPIClient: \(error)")
                 case .success(let data):
                     self.bestSellers = data
@@ -175,7 +186,7 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250, height: 250)
+        return CGSize(width: 350, height: 350)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -197,5 +208,8 @@ extension BestSellersVC {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let newCategory = categories[row].listName
         currentCategory = newCategory.lowercased().replacingOccurrences(of: " ", with: "-")
+
+        print(currentCategory)
+
     }
 }

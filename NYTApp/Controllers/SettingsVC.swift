@@ -78,7 +78,7 @@ extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let category = categories[row].listName
+        let category = categories[row].listNameEncoded
         print(category)
         UserDefaultsWrapper.manager.storeFavCats(favCat: category)
         let alertController = UIAlertController(title: "Category Saved!", message: "", preferredStyle: .actionSheet)
@@ -92,6 +92,6 @@ extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     
-    
+   
     
 }
