@@ -15,7 +15,7 @@ class FavoritesVC: UIViewController {
         let layout = UICollectionViewFlowLayout.init()
         let cv = UICollectionView(frame:.zero , collectionViewLayout: layout)
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 300, height: 300)
+        layout.itemSize = CGSize(width: 350, height: 350)
         cv.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         cv.register(FavoritesCVCell.self, forCellWithReuseIdentifier: "FavoritesCVCell")
         cv.dataSource = self
