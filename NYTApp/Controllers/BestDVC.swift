@@ -10,6 +10,8 @@ import UIKit
 
 class BestDVC: UIViewController {
     
+    
+    
     // MARK: - UI Objects
     lazy var bookImage: UIImageView = {
         var book = UIImageView()
@@ -35,6 +37,15 @@ class BestDVC: UIViewController {
         return amazonIcon
     }()
     
+    lazy var saveFavoritesButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Favorites", style: UIBarButtonItem.Style.plain, target: self, action: #selector(addToFavorites))
+        return button
+    }()
+    
+    
+    // MARK: -Properties
+    var detailBook: BestSeller!
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,14 +62,15 @@ class BestDVC: UIViewController {
     //MARK: - Objective C Functions
     
     @objc func addToFavorites() {
-        
+        try? BestSellerPersistenceManager.manager.saveSeller(seller: detailBook)
         
     }
     
     @objc func amazonLink() {
         
-    }
-    
+        
+        }
+
     // MARK: - Contraint Methods
     private func addSubViews() {
         self.view.addSubview(bookImage)
