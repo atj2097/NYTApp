@@ -45,9 +45,15 @@ class BestSellersVC: UIViewController {
         }
     }
     
-    var currentCategory: String = "combined-print-and-e-book-fiction"
-
+    var currentCategory = String() {
+        didSet {
+            loadBestSellerData()
+            bestSellerCV.reloadData()
+        }
+    }
     var googleBook: VolumeInfo!
+    
+    
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -60,9 +66,15 @@ class BestSellersVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCategoriesData()
+        loadUserDefaults()
     }
     
     // MARK: - Private functions
+    
+    private func loadUserDefaults() {
+        currentCategory = UserDefaultsWrapper.manager.getFavCats()!
+    }
+    
     
     private func loadCategoriesData() {
         let urlStr = CategoriesAPIClient.getSearchResultsURLStr()
@@ -71,7 +83,7 @@ class BestSellersVC: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    //TODO: Add Alert, cannot load data
+                    self.showCategoryErrorAlert()
                     print("CategoriesAPIClient: \(error)")
                 case .success(let data):
                     self.categories = data
@@ -87,7 +99,7 @@ class BestSellersVC: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    //TODO: Add Alert, cannot load data
+                    self.showBestSellerErrorAlert()
                     print("BestSellerAPIClient: \(error)")
                 case .success(let data):
                     self.bestSellers = data
@@ -96,17 +108,27 @@ class BestSellersVC: UIViewController {
         }
     }
     
+    private func showCategoryErrorAlert() {
+        let alertVC = UIAlertController(title: "Error", message: "Could not load Best Seller categories.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    private func showBestSellerErrorAlert() {
+        let alertVC = UIAlertController(title: "Error", message: "Could not load Best Seller books.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
     // MARK: - Contraint Methods
     private func addSubViews() {
         self.view.addSubview(bestSellerCV)
         self.view.addSubview(categoryPicker)
     }
     
-    
     private func configureBestSellerCV() {
         bestSellerCV.translatesAutoresizingMaskIntoConstraints = false
         [bestSellerCV.topAnchor.constraint(equalTo: self.view.topAnchor), bestSellerCV.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),bestSellerCV.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), bestSellerCV.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)].forEach({$0.isActive = true})
-        
     }
     
     private func configurePickerConstriants() {
@@ -115,7 +137,6 @@ class BestSellersVC: UIViewController {
         [categoryPicker.topAnchor.constraint(equalTo: bestSellerCV.bottomAnchor), categoryPicker.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryPicker.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryPicker.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)].forEach({$0.isActive = true})
     }
     
-
 }
 
 // MARK: - Extensions
@@ -127,7 +148,6 @@ extension BestSellersVC: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return categories.count
     }
-
     
 }
 
@@ -151,12 +171,12 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
                 switch result {
                 case .failure(let error):
                     print(error)
+                    cell.bookImage.image = UIImage(named: "missingBook")
                 case .success(let imageFromURL):
                     cell.bookImage.image = imageFromURL
                 }
             }
         }
-      
         
         return cell
     }
@@ -164,58 +184,28 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 250, height: 250)
     }
- 
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let detailVC = BestDVC()
         detailVC.selectedBestSeller = bestSellers[indexPath.row]
         
         self.navigationController?.pushViewController(detailVC, animated: true)
+        
     }
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 extension BestSellersVC {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return categories[row].listName
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let newCategory = categories[row].listName
+        currentCategory = newCategory.lowercased().replacingOccurrences(of: " ", with: "-")
+
+        print(currentCategory)
+
     }
 }
