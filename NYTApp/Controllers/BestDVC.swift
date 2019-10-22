@@ -44,7 +44,7 @@ class BestDVC: UIViewController {
     
     
     // MARK: -Properties
-    var detailBook: GoogleBook!
+    var detailBook: BestSeller!
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -62,7 +62,7 @@ class BestDVC: UIViewController {
     //MARK: - Objective C Functions
     
     @objc func addToFavorites() {
-        
+        try? BestSellerPersistenceManager.manager.saveSeller(seller: detailBook)
         
     }
     
