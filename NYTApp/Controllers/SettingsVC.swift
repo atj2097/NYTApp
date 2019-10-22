@@ -81,7 +81,7 @@ extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
         let category = categories[row].listName
         print(category)
         UserDefaultsWrapper.manager.storeFavCats(favCat: category)
-        let alertController = UIAlertController(title: "New Favorite!", message: "", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Category Saved!", message: "", preferredStyle: .actionSheet)
         let action1 = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
             print("You've pressed OK");
         }
