@@ -12,8 +12,9 @@ class BestDVC: UIViewController {
     
     // MARK: - UI Objects
     lazy var bookImage: UIImageView = {
-        var book = UIImageView()
-        return book
+        var imageView = UIImageView()
+        loadImage(imageView: imageView)
+        return imageView
     }()
     
     lazy var descriptionTextField: UITextView = {
@@ -38,6 +39,23 @@ class BestDVC: UIViewController {
     // MARK: - Internal Properties
     var selectedBestSeller: BestSeller!
     
+    
+    // MARK: - Private Functions
+    private func loadImage(imageView: UIImageView) {
+        let imageURLStr = selectedBestSeller.bookImage
+        
+        ImageHelper.shared.getImage(urlStr: imageURLStr) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let imageFromURL):
+                    imageView.image = imageFromURL
+                }
+            }
+        }
+    }
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +66,7 @@ class BestDVC: UIViewController {
         let add = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addToFavorites))
         navigationItem.rightBarButtonItems = [add]
         //nav bar title
-        navigationItem.title = "insertBookVariable"
+        navigationItem.title = selectedBestSeller.title
     }
     
     //MARK: - Objective C Functions
