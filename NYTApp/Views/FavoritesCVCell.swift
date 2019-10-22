@@ -36,7 +36,9 @@ class FavoritesCVCell: UICollectionViewCell {
     
     lazy var optionsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("...", for: .normal)
+        button.setBackgroundImage(.actions, for: .normal)
+        button.tintColor = .black
+        button.backgroundColor = .white
         button.addTarget(self, action: #selector(optionsButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
@@ -80,7 +82,7 @@ class FavoritesCVCell: UICollectionViewCell {
     private func configureOptionsButtonContraints() {
         optionsButton.translatesAutoresizingMaskIntoConstraints = false
         
-        [optionsButton.topAnchor.constraint(equalTo: contentView.topAnchor), optionsButton.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor), optionsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), optionsButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.25)].forEach({$0.isActive = true})
+        [optionsButton.topAnchor.constraint(equalTo: contentView.topAnchor), optionsButton.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor), optionsButton.heightAnchor.constraint(equalToConstant: 30), optionsButton.widthAnchor.constraint(equalToConstant: 30)].forEach({$0.isActive = true})
     }
     
     private func configureListLabelContraints() {
