@@ -16,7 +16,7 @@ class GoogleBooksAPIClient {
     // MARK: - Instance Methods
     static func getSearchResultsURLStr(from isbn: String) -> String {
         
-        return "https://www.googleapis.com/books/v1/volumes?q=+isbn:\(isbn)"
+        return "https://www.googleapis.com/books/v1/volumes?q=+isbn:\(isbn)&key=\(Secrets.sunniGoogleAPIKey)"
     }
     
     func getGoogleBooks(urlStr: String, completionHandler: @escaping (Result<[GoogleBook], AppError>) -> ())  {
