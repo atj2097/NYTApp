@@ -63,8 +63,8 @@ class BestDVC: UIViewController {
         setUpBookImage()
         self.view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addToFavorites))
-        let add = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addToFavorites))
-        navigationItem.rightBarButtonItems = [add]
+        let favoriteButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addToFavorites))
+        navigationItem.rightBarButtonItems = [favoriteButton]
         navigationItem.title = selectedBestSeller.title
     }
     
