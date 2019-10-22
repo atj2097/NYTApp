@@ -114,14 +114,15 @@ extension FavoritesVC: FavoriteCellDelegate {
                 try BestSellerPersistenceManager.manager.delete(tag: tag)
                 self.loadFavoritesData()
             } catch {
-                // TODO: Add an alert?
                 print(error)
             }
             
            }
         
-        let seeOnAmazonAction = UIAlertAction.init(title: "See on Amazon", style: .default) { (action) in
-            // TODO: - Research how to segue to amazons site
+        let seeOnAmazonAction = UIAlertAction.init(title: "See on Amazon", style: .default) { (_) in
+            if let url = NSURL(string: self.favorites[tag].amazonProductURL) {
+                UIApplication.shared.openURL(url as URL)
+            }
         }
         
         let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
