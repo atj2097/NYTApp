@@ -21,14 +21,23 @@ class BestDVC: UIViewController {
     
     lazy var descriptionTextField: UITextView = {
         let textField = UITextView(frame: .zero)
-        textField.text = selectedBestSeller.bookDescription
+        textField.text =
+            """
+            #\(selectedBestSeller.rank) on Best Seller's List
+            
+            \(selectedBestSeller.title)
+            By \(selectedBestSeller.author)
+            
+            \(selectedBestSeller.bookDescription)
+            """
         textField.textColor = .black
         textField.isScrollEnabled = true
-        textField.font = UIFont.init(name: "ArialMT", size: 12)
+        textField.font = UIFont.init(name: "ArialMT", size: 20)
         textField.textAlignment = .center
         textField.backgroundColor = .clear
         return textField
     }()
+    
     
     lazy var amazonIcon: UIButton = {
         var amazonIcon = UIButton(frame: .zero)
@@ -127,7 +136,7 @@ class BestDVC: UIViewController {
         
         //Button
         amazonIcon.translatesAutoresizingMaskIntoConstraints = false
-        [amazonIcon.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 675),amazonIcon.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),amazonIcon.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),amazonIcon.widthAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)].forEach({$0.isActive = true})
+        [amazonIcon.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5),amazonIcon.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),amazonIcon.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),amazonIcon.widthAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)].forEach({$0.isActive = true})
         
     }
     
