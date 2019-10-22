@@ -20,7 +20,7 @@ class BestSellerCVCell: UICollectionViewCell {
     
     lazy var weeksOnListLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 14.0)
+        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 20.0)
         label.backgroundColor = .white
         label.textColor = .black
         return label
@@ -28,7 +28,7 @@ class BestSellerCVCell: UICollectionViewCell {
     
     lazy var descriptionTextView: UITextView = {
       let tv = UITextView()
-        tv.font = UIFont(name: "AmericanTypewriter", size: 13.0)
+        tv.font = UIFont(name: "AmericanTypewriter", size: 15.0)
         tv.isScrollEnabled = true
         tv.backgroundColor = .white
         tv.textColor = .black
