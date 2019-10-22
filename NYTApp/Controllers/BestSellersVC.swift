@@ -45,14 +45,19 @@ class BestSellersVC: UIViewController {
         }
     }
     
-    var currentCategory: String = "combined-print-and-e-book-fiction"
-
+    var currentCategory = String() {
+        didSet {
+            loadBestSellerData()
+            bestSellerCV.reloadData()
+        }
+    }
     var googleBook: VolumeInfo!
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+         currentCategory = "combined-print-and-e-book-fiction."
         addSubViews()
         configureBestSellerCV()
         configurePickerConstriants()
@@ -167,49 +172,14 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 extension BestSellersVC {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return categories[row].listName
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let newCategory = categories[row].listName
+        currentCategory = newCategory.lowercased().replacingOccurrences(of: " ", with: "-")
+        print(currentCategory)
     }
 }
