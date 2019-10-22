@@ -65,15 +65,18 @@ class BestDVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addToFavorites))
         let add = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addToFavorites))
         navigationItem.rightBarButtonItems = [add]
-        //nav bar title
         navigationItem.title = selectedBestSeller.title
     }
     
     //MARK: - Objective C Functions
     
     @objc func addToFavorites() {
-        
-        
+        do {
+            try BestSellerPersistenceManager.manager.saveSeller(seller: selectedBestSeller)
+        } catch {
+            print(error)
+        }
+
     }
     
     @objc func amazonLink() {
