@@ -59,7 +59,22 @@ extension FavoritesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = favoritesCV.dequeueReusableCell(withReuseIdentifier: "FavoritesCVCell", for: indexPath) as? FavoritesCVCell
-        cell?.backgroundColor = .red
+        cell?.backgroundColor = .clear
+        var currentBestSeller = faveBookWeeksOnlist[indexPath.row]
+        let imageURLStr = currentBestSeller.bookImage
+               ImageHelper.shared.getImage(urlStr: imageURLStr) { (result) in
+                   DispatchQueue.main.async {
+                       switch result {
+                       case .failure(let error):
+                           print(error)
+                       case .success(let imageFromURL):
+                        cell!.bookImage.image = imageFromURL
+                       }
+                   }
+               }
+        cell?.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
+        cell!.descriptionTextView.text = "\(currentBestSeller.bookDescription)"
+        
         cell?.delegate = self
         cell?.optionsButton.tag = indexPath.row
         return cell!
