@@ -13,12 +13,14 @@ class BestSellerCVCell: UICollectionViewCell {
     // MARK: - UI Objects
     lazy var bookImage: UIImageView = {
         let iv = UIImageView()
+        iv.layer.cornerRadius = 15
         iv.backgroundColor = .red
         return iv
     }()
     
     lazy var weeksOnListLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 14.0)
         label.backgroundColor = .white
         label.textColor = .black
         return label
@@ -26,6 +28,7 @@ class BestSellerCVCell: UICollectionViewCell {
     
     lazy var descriptionTextView: UITextView = {
       let tv = UITextView()
+        tv.font = UIFont(name: "AmericanTypewriter", size: 13.0)
         tv.isScrollEnabled = true
         tv.backgroundColor = .white
         tv.textColor = .black
