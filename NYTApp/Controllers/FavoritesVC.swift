@@ -44,7 +44,7 @@ class FavoritesVC: UIViewController {
     // MARK: - Private Methods
     private func loadFavoritesData() {
         do {
-            favorites = try BestSellerPersistenceManager.manager.getSellers()
+            favorites = try BestSellerPersistenceManager.manager.getSellers().reversed()
         } catch {
             print(error)
             showFavoritesErrorAlert()
