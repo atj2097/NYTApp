@@ -18,9 +18,9 @@ class BestDVC: UIViewController {
         return book
     }()
     
-    lazy var textField: UITextView = {
+    lazy var descriptionTextField: UITextView = {
         let textField = UITextView(frame: .zero)
-        textField.text = ""
+        textField.text = selectedBestSeller.bookDescription
         textField.textColor = .black
         textField.isScrollEnabled = true
         textField.font = UIFont.init(name: "ArialMT", size: 12)
@@ -37,6 +37,10 @@ class BestDVC: UIViewController {
         return amazonIcon
     }()
     
+
+    // MARK: - Internal Properties
+    var selectedBestSeller: BestSeller!
+
     lazy var saveFavoritesButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Favorites", style: UIBarButtonItem.Style.plain, target: self, action: #selector(addToFavorites))
         return button
@@ -45,6 +49,7 @@ class BestDVC: UIViewController {
     
     // MARK: -Properties
     var detailBook: BestSeller!
+
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -74,7 +79,7 @@ class BestDVC: UIViewController {
     // MARK: - Contraint Methods
     private func addSubViews() {
         self.view.addSubview(bookImage)
-        self.view.addSubview(textField)
+        self.view.addSubview(descriptionTextField)
         self.view.addSubview(amazonIcon)
     }
     
@@ -84,8 +89,8 @@ class BestDVC: UIViewController {
         [bookImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),bookImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor), bookImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.40), bookImage.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75)].forEach({$0.isActive = true})
         
         //Text Field
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        [textField.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 20),textField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),textField.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 45),textField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0)].forEach({$0.isActive = true})
+        descriptionTextField.translatesAutoresizingMaskIntoConstraints = false
+        [descriptionTextField.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 20),descriptionTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),descriptionTextField.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 45),descriptionTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0)].forEach({$0.isActive = true})
         
         //Button
         amazonIcon.translatesAutoresizingMaskIntoConstraints = false

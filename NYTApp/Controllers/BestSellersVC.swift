@@ -164,7 +164,13 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 250, height: 250)
     }
-    
+ 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = BestDVC()
+        detailVC.selectedBestSeller = bestSellers[indexPath.row]
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 
