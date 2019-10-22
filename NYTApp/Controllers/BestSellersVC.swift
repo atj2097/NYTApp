@@ -53,11 +53,12 @@ class BestSellersVC: UIViewController {
     }
     var googleBook: VolumeInfo!
     
+    
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-         currentCategory = "combined-print-and-e-book-fiction."
         addSubViews()
         configureBestSellerCV()
         configurePickerConstriants()
@@ -65,9 +66,15 @@ class BestSellersVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCategoriesData()
+        loadUserDefaults()
     }
     
     // MARK: - Private functions
+    
+    private func loadUserDefaults() {
+        currentCategory = UserDefaultsWrapper.manager.getFavCats()!
+    }
+    
     
     private func loadCategoriesData() {
         let urlStr = CategoriesAPIClient.getSearchResultsURLStr()
