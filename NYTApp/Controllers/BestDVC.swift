@@ -10,6 +10,8 @@ import UIKit
 
 class BestDVC: UIViewController {
     
+    
+    
     // MARK: - UI Objects
     lazy var bookImage: UIImageView = {
         var imageView = UIImageView()
@@ -43,6 +45,16 @@ class BestDVC: UIViewController {
     
     // MARK: - Internal Properties
     var selectedBestSeller: BestSeller!
+
+    lazy var saveFavoritesButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Favorites", style: UIBarButtonItem.Style.plain, target: self, action: #selector(addToFavorites))
+        return button
+    }()
+    
+    
+    // MARK: -Properties
+    var detailBook: BestSeller!
+
     
     
     
@@ -88,13 +100,13 @@ class BestDVC: UIViewController {
         } catch {
             print(error)
         }
-
     }
     
     @objc func amazonLink() {
         
-    }
-    
+        
+        }
+
     // MARK: - Contraint Methods
     private func addSubViews() {
         self.view.addSubview(bookImage)
