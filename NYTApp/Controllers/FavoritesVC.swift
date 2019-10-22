@@ -23,6 +23,10 @@ class FavoritesVC: UIViewController {
         return cv
     }()
     
+    // MARK: Properties
+    var faveBookImageAndDescrip = [GoogleBook]()
+    var faveBookWeeksOnlist = [BestSeller]()
+    
     // MARK: -Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +60,38 @@ extension FavoritesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = favoritesCV.dequeueReusableCell(withReuseIdentifier: "FavoritesCVCell", for: indexPath) as? FavoritesCVCell
         cell?.backgroundColor = .red
+        cell?.delegate = self
+        cell?.optionsButton.tag = indexPath.row
         return cell!
+    }
+    
+    
+}
+
+extension FavoritesVC: FavoriteCellDelegate {
+    func showActionSheet(tag: Int) {
+        let optionsMenu = UIAlertController.init(title: "Options", message: "Pick an option below", preferredStyle: .actionSheet)
+        
+        let deleteAction = UIAlertAction.init(title: "Delete", style: .destructive) { (action) in
+            let deletedImageAndDescription = self.faveBookImageAndDescrip[tag]
+            
+            // TODO: - Determine whether we need use the below data as well to delete the entire cell
+//            let deletedWeeksOnList = self.faveBookWeeksOnlist[tag]
+            
+            // TODO: - Use persistence and eliminate print statement
+            print("I just deleted \(deletedImageAndDescription)")
+        }
+        
+        let seeOnAmazonAction = UIAlertAction.init(title: "See on Amazon", style: .default) { (action) in
+            // TODO: - Research how to segue to amazons site
+        }
+        
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        
+        optionsMenu.addAction(deleteAction)
+        optionsMenu.addAction(seeOnAmazonAction)
+        optionsMenu.addAction(cancelAction)
+        present(optionsMenu, animated: true)
     }
     
     
