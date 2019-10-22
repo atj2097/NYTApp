@@ -180,6 +180,8 @@ extension BestSellersVC {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let newCategory = categories[row].listName
         currentCategory = newCategory.lowercased().replacingOccurrences(of: " ", with: "-")
+
         print(currentCategory)
+
     }
 }
