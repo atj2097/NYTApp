@@ -8,6 +8,7 @@
 
 //
 import Foundation
+
 struct BestSellerPersistenceManager {
     private init() {}
     static let manager = BestSellerPersistenceManager()
