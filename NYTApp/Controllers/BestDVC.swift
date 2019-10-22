@@ -36,11 +36,34 @@ class BestDVC: UIViewController {
         return amazonIcon
     }()
     
+    lazy var saveFavoriteButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(title: "Save", style: UIBarButtonItem.Style.plain , target: self, action: #selector(addToFavorites))
+        return barButton
+    }()
+    
     // MARK: - Internal Properties
     var selectedBestSeller: BestSeller!
     
     
+    
+    // MARK: - Lifecycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureViewController()
+        addSubViews()
+        setBookImageViewConstraints()
+        
+        
+    }
+    
+    
     // MARK: - Private Functions
+    private func configureViewController() {
+        self.view.backgroundColor = .white
+        navigationItem.rightBarButtonItem = saveFavoriteButton
+        navigationItem.title = selectedBestSeller.title
+    }
+    
     private func loadImage(imageView: UIImageView) {
         let imageURLStr = selectedBestSeller.bookImage
         
@@ -56,23 +79,12 @@ class BestDVC: UIViewController {
         }
     }
     
-    // MARK: - Lifecycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addSubViews()
-        setUpBookImage()
-        self.view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addToFavorites))
-        let favoriteButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addToFavorites))
-        navigationItem.rightBarButtonItems = [favoriteButton]
-        navigationItem.title = selectedBestSeller.title
-    }
-    
     //MARK: - Objective C Functions
     
     @objc func addToFavorites() {
         do {
             try BestSellerPersistenceManager.manager.saveSeller(seller: selectedBestSeller)
+            print("saved")
         } catch {
             print(error)
         }
@@ -90,7 +102,7 @@ class BestDVC: UIViewController {
         self.view.addSubview(amazonIcon)
     }
     
-    private func setUpBookImage() {
+    private func setBookImageViewConstraints() {
         //Book Image
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         [bookImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),bookImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor), bookImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.40), bookImage.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75)].forEach({$0.isActive = true})
