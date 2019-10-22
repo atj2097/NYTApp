@@ -19,6 +19,10 @@ struct BestSellerPersistenceManager {
         try persistenceHelper.save(newElement: seller)
 
     }
+    
+    func delete(tag: Int) throws {
+        try persistenceHelper.delete(index: tag)
+    }
 
     func getSellers() throws -> [BestSeller] {
         return try persistenceHelper.getObjects()
