@@ -22,9 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let faveVC = FavoritesVC()
         let settingsVC = SettingsVC()
         
-        bestSellVC.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0)
-        faveVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+        //bestSellVC.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0)
+        bestSellVC.tabBarItem = UITabBarItem(title: "NYT Best Sellers", image: UIImage(systemName: "rosette"), tag: 0)
+        //faveVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        faveVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "bookmark"), tag: 1)
+        //settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 2)
         bestSellVC.title = "NYT Best Sellers"
         
         let navController = UINavigationController(rootViewController: bestSellVC)
