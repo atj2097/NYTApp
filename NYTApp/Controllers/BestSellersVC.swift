@@ -163,6 +163,7 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
                 switch result {
                 case .failure(let error):
                     print(error)
+                    cell.bookImage.image = UIImage(named: "missingBook")
                 case .success(let imageFromURL):
                     cell.bookImage.image = imageFromURL
                 }
