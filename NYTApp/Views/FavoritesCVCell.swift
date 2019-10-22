@@ -20,7 +20,7 @@ class FavoritesCVCell: UICollectionViewCell {
     lazy var weeksOnListLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
-        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 14.0)
+        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 17.0)
         label.textColor = .black
         return label
     }()
@@ -29,14 +29,16 @@ class FavoritesCVCell: UICollectionViewCell {
       let tv = UITextView()
         tv.isScrollEnabled = true
         tv.backgroundColor = .white
-        tv.font = UIFont(name: "AmericanTypewriter", size: 13.0)
+        tv.font = UIFont(name: "AmericanTypewriter", size: 15.0)
         tv.textColor = .black
         return tv
     }()
     
     lazy var optionsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("...", for: .normal)
+        button.setBackgroundImage(.actions, for: .normal)
+        button.tintColor = .black
+        button.backgroundColor = .white
         button.addTarget(self, action: #selector(optionsButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
@@ -74,13 +76,13 @@ class FavoritesCVCell: UICollectionViewCell {
     private func configureBookImageContraints() {
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         
-        [bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0), bookImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor), bookImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5), bookImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5)].forEach({$0.isActive = true})
+        [bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0), bookImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor), bookImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5), bookImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7)].forEach({$0.isActive = true})
     }
     
     private func configureOptionsButtonContraints() {
         optionsButton.translatesAutoresizingMaskIntoConstraints = false
         
-        [optionsButton.topAnchor.constraint(equalTo: contentView.topAnchor), optionsButton.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor), optionsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor), optionsButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.25)].forEach({$0.isActive = true})
+        [optionsButton.topAnchor.constraint(equalTo: contentView.topAnchor), optionsButton.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor), optionsButton.heightAnchor.constraint(equalToConstant: 30), optionsButton.widthAnchor.constraint(equalToConstant: 30)].forEach({$0.isActive = true})
     }
     
     private func configureListLabelContraints() {

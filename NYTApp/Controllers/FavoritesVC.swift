@@ -15,7 +15,7 @@ class FavoritesVC: UIViewController {
         let layout = UICollectionViewFlowLayout.init()
         let cv = UICollectionView(frame:.zero , collectionViewLayout: layout)
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 250, height: 250)
+        layout.itemSize = CGSize(width: 350, height: 350)
         cv.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         cv.register(FavoritesCVCell.self, forCellWithReuseIdentifier: "FavoritesCVCell")
         cv.dataSource = self
@@ -44,7 +44,7 @@ class FavoritesVC: UIViewController {
     // MARK: - Private Methods
     private func loadFavoritesData() {
         do {
-            favorites = try BestSellerPersistenceManager.manager.getSellers()
+            favorites = try BestSellerPersistenceManager.manager.getSellers().reversed()
         } catch {
             print(error)
             showFavoritesErrorAlert()
@@ -114,14 +114,15 @@ extension FavoritesVC: FavoriteCellDelegate {
                 try BestSellerPersistenceManager.manager.delete(tag: tag)
                 self.loadFavoritesData()
             } catch {
-                // TODO: Add an alert?
                 print(error)
             }
             
            }
         
-        let seeOnAmazonAction = UIAlertAction.init(title: "See on Amazon", style: .default) { (action) in
-            // TODO: - Research how to segue to amazons site
+        let seeOnAmazonAction = UIAlertAction.init(title: "See on Amazon", style: .default) { (_) in
+            if let url = NSURL(string: self.favorites[tag].amazonProductURL) {
+                UIApplication.shared.openURL(url as URL)
+            }
         }
         
         let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)

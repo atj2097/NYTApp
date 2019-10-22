@@ -40,6 +40,7 @@
 		EA0EF737235F4A5700A1D6D0 /* BestSellerJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF736235F4A5700A1D6D0 /* BestSellerJSON.json */; };
 		EA0EF738235F4A8500A1D6D0 /* BestSeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF734235F47D800A1D6D0 /* BestSeller.swift */; };
 		EA0EF739235F4AF500A1D6D0 /* BestSellerJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF736235F4A5700A1D6D0 /* BestSellerJSON.json */; };
+		EA0EF760235F92D200A1D6D0 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF75F235F92D200A1D6D0 /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoogleBookJSON.json; sourceTree = "<group>"; };
 		EA0EF734235F47D800A1D6D0 /* BestSeller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSeller.swift; sourceTree = "<group>"; };
 		EA0EF736235F4A5700A1D6D0 /* BestSellerJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BestSellerJSON.json; sourceTree = "<group>"; };
+		EA0EF75F235F92D200A1D6D0 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,9 +127,9 @@
 		A51746C4235A466B0092C15C /* NYTApp */ = {
 			isa = PBXGroup;
 			children = (
+				EA0EF75E235F929C00A1D6D0 /* Confidential */,
 				A5DC9508235E33A300BF10EA /* Protocols */,
 				A517470D235A4A590092C15C /* Persistence */,
-				A517470A235A49D20092C15C /* Confidential */,
 				A5174703235A49670092C15C /* Models */,
 				A51746F5235A48160092C15C /* Networking */,
 				A51746F0235A47CB0092C15C /* Views */,
@@ -204,13 +206,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A517470A235A49D20092C15C /* Confidential */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Confidential;
-			sourceTree = "<group>";
-		};
 		A517470D235A4A590092C15C /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +222,14 @@
 				A5DC9509235E33CD00BF10EA /* CellDelegation.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EA0EF75E235F929C00A1D6D0 /* Confidential */ = {
+			isa = PBXGroup;
+			children = (
+				EA0EF75F235F92D200A1D6D0 /* Secrets.swift */,
+			);
+			path = Confidential;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +359,7 @@
 				A5174707235A498F0092C15C /* Category.swift in Sources */,
 				A51746F2235A48000092C15C /* BestSellerCVCell.swift in Sources */,
 				A5174700235A48C90092C15C /* AppErrorHandler.swift in Sources */,
+				EA0EF760235F92D200A1D6D0 /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
