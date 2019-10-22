@@ -97,6 +97,7 @@ extension FavoritesVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         cell.delegate = self
         cell.optionsButton.tag = indexPath.row
+
         
         return cell
     }
@@ -108,15 +109,16 @@ extension FavoritesVC: FavoriteCellDelegate {
     func showActionSheet(tag: Int) {
         let optionsMenu = UIAlertController.init(title: "Options", message: "Pick an option below", preferredStyle: .actionSheet)
         
-        let deleteAction = UIAlertAction.init(title: "Delete", style: .destructive) { (action) in
-//            let deletedImageAndDescription =
+        let deleteAction = UIAlertAction.init(title: "Delete", style: .destructive) { (_) in
+            do {
+                try BestSellerPersistenceManager.manager.delete(tag: tag)
+                self.loadFavoritesData()
+            } catch {
+                // TODO: Add an alert?
+                print(error)
+            }
             
-            // TODO: - Determine whether we need use the below data as well to delete the entire cell
-//            let deletedWeeksOnList = self.faveBookWeeksOnlist[tag]
-            
-            // TODO: - Use persistence and eliminate print statement
-//            print("I just deleted \(deletedImageAndDescription)")
-        }
+           }
         
         let seeOnAmazonAction = UIAlertAction.init(title: "See on Amazon", style: .default) { (action) in
             // TODO: - Research how to segue to amazons site
