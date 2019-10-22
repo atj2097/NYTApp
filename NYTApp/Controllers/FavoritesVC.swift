@@ -23,61 +23,82 @@ class FavoritesVC: UIViewController {
         return cv
     }()
     
-    // MARK: Properties
-    var faveBookImageAndDescrip = [GoogleBook]()
-    var faveBookWeeksOnlist = [BestSeller]()
+    // MARK: - Internal Properties
+    var favorites = [BestSeller]() {
+        didSet {
+            favoritesCV.reloadData()
+        }
+    }
     
-    // MARK: -Lifecycle Methods
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
         configureCVContraints()
     }
     
-    // MARK: - private Methods
-    private func addSubViews() {
-        self.view.addSubview(favoritesCV)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        loadFavoritesData()
     }
     
+    // MARK: - Private Methods
+    private func loadFavoritesData() {
+        do {
+            favorites = try BestSellerPersistenceManager.manager.getSellers()
+        } catch {
+            print(error)
+            showFavoritesErrorAlert()
+        }
+    }
+    
+    private func showFavoritesErrorAlert() {
+        let alertVC = UIAlertController(title: "Error", message: "Could not load Favorite books.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
     // MARK: - Contraint Methods
+    private func addSubViews() {
+        self.view.addSubview(favoritesCV)
+    }
+    
     private func configureCVContraints() {
         favoritesCV.translatesAutoresizingMaskIntoConstraints = false
         [favoritesCV.topAnchor.constraint(equalTo: self.view.topAnchor),favoritesCV.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),favoritesCV.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),favoritesCV.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)].forEach({$0.isActive = true})
-        
     }
-    
-
    
 }
 
 // MARK: - Extensions
 extension FavoritesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return favorites.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = favoritesCV.dequeueReusableCell(withReuseIdentifier: "FavoritesCVCell", for: indexPath) as? FavoritesCVCell
-        cell?.backgroundColor = .clear
-        var currentBestSeller = faveBookWeeksOnlist[indexPath.row]
-        let imageURLStr = currentBestSeller.bookImage
-               ImageHelper.shared.getImage(urlStr: imageURLStr) { (result) in
-                   DispatchQueue.main.async {
-                       switch result {
-                       case .failure(let error):
-                           print(error)
-                       case .success(let imageFromURL):
-                        cell!.bookImage.image = imageFromURL
+        let cell = favoritesCV.dequeueReusableCell(withReuseIdentifier: "FavoritesCVCell", for: indexPath) as! FavoritesCVCell
+        cell.backgroundColor = .clear
+        
+        let currentFavorite = favorites[indexPath.row]
+        
+        let imageURLStr = currentFavorite.bookImage
+        
+        ImageHelper.shared.getImage(urlStr: imageURLStr) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let imageFromURL):
+                    cell.bookImage.image = imageFromURL
                        }
                    }
                }
-        cell?.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
-        cell!.descriptionTextView.text = "\(currentBestSeller.bookDescription)"
+        cell.weeksOnListLabel.text = "\(currentFavorite.weeksOnList) weeks on Best Seller list"
+        cell.descriptionTextView.text = "\(currentFavorite.bookDescription)"
         
-        cell?.delegate = self
-        cell?.optionsButton.tag = indexPath.row
-        return cell!
+        cell.delegate = self
+        cell.optionsButton.tag = indexPath.row
+        
+        return cell
     }
     
     
@@ -88,13 +109,13 @@ extension FavoritesVC: FavoriteCellDelegate {
         let optionsMenu = UIAlertController.init(title: "Options", message: "Pick an option below", preferredStyle: .actionSheet)
         
         let deleteAction = UIAlertAction.init(title: "Delete", style: .destructive) { (action) in
-            let deletedImageAndDescription = self.faveBookImageAndDescrip[tag]
+//            let deletedImageAndDescription =
             
             // TODO: - Determine whether we need use the below data as well to delete the entire cell
 //            let deletedWeeksOnList = self.faveBookWeeksOnlist[tag]
             
             // TODO: - Use persistence and eliminate print statement
-            print("I just deleted \(deletedImageAndDescription)")
+//            print("I just deleted \(deletedImageAndDescription)")
         }
         
         let seeOnAmazonAction = UIAlertAction.init(title: "See on Amazon", style: .default) { (action) in
