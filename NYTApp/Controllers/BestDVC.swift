@@ -73,8 +73,6 @@ class BestDVC: UIViewController {
         configureViewController()
         addSubViews()
         setBookImageViewConstraints()
-        
-        
     }
     
     
@@ -115,8 +113,7 @@ class BestDVC: UIViewController {
         if let url = NSURL(string: selectedBestSeller.amazonProductURL) {
             UIApplication.shared.openURL(url as URL)
         }
-        
-        }
+    }
 
     // MARK: - Contraint Methods
     private func addSubViews() {
