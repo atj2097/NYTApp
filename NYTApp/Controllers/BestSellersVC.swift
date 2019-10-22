@@ -143,51 +143,20 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         
         cell.backgroundColor = .white
         cell.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
-        cell.descriptionTextView.text = "\(currentBestSeller.bookDetails[0].bookDetailDescription)"
+        cell.descriptionTextView.text = "\(currentBestSeller.bookDescription)"
         
-       
-      
-            
-     
-        let googleBooksUrlStr = GoogleBooksAPIClient.getSearchResultsURLStr(from: currentBestSeller.bookDetails[0].primaryIsbn10)
-               print(googleBooksUrlStr)
-            
-         
-
-            
-            
-        DispatchQueue.global().async {
-            
-        GoogleBooksAPIClient.manager.getGoogleBooks(urlStr: googleBooksUrlStr) { (result) in
-            
+        let imageURLStr = currentBestSeller.bookImage
+        ImageHelper.shared.getImage(urlStr: imageURLStr) { (result) in
             DispatchQueue.main.async {
-                          switch result {
-                                   case .failure(let error):
-                                       //TODO: Add Alert, cannot load data
-                                       print("GoogleAPIClient: \(error)")
-                                   
-                                   case .success(let data):
-                                       self.googleBook = data[0].volumeInfo
-                                       
-                                       let imageUrlStr = self.googleBook.imageLinks.thumbnail
-                                       print(imageUrlStr)
-                                       
-                                       ImageHelper.shared.getImage(urlStr: imageUrlStr) { (result) in
-                                           DispatchQueue.main.async {
-                                               switch result {
-                                                   case .failure(let error):
-                                                       print("ImageHelper: \(error)")
-                                                   case .success(let imageFromUrl):
-                                                       cell.bookImage.image = imageFromUrl
-                                               }
-                                           }
-                                       }
-                               }
-                    }
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let imageFromURL):
+                    cell.bookImage.image = imageFromURL
+                }
             }
-        
-       
         }
+      
         
         return cell
     }
