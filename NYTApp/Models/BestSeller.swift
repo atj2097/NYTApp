@@ -1,56 +1,58 @@
 //
-//  BestSellerModel.swift
+//  BestSeller.swift
 //  NYTApp
 //
-//  Created by Liana Norman on 10/18/19.
+//  Created by Sunni Tang on 10/22/19.
 //  Copyright © 2019 Liana Norman, Sunni Tang, Adam Jackson, Malcolm Turnquest. All rights reserved.
 //
 
 import Foundation
 
-// MARK: - BestSellerWrapper
+// MARK: - Books
 struct BestSellerWrapper: Codable {
-    let results: [BestSeller]
+    let results: Results
     
     static func decodeBestSellerFromData(from jsonData: Data) throws -> [BestSeller] {
         let response = try JSONDecoder().decode(BestSellerWrapper.self, from: jsonData)
-        return response.results
+        return response.results.books
     }
-
 }
 
-// MARK: - BestSeller
-struct BestSeller: Codable {
-    let listName: String
-    let rank: Int
-    let weeksOnList: Int
-    let amazonProductURL: String
-    let bookDetails: [BookDetail]
-
+// MARK: - Results
+struct Results: Codable {
+    let listName, listNameEncoded: String
+    let displayName: String
+    let books: [BestSeller]
+    
     private enum CodingKeys: String, CodingKey {
         case listName = "list_name"
-        case rank
-        case weeksOnList = "weeks_on_list"
-        case amazonProductURL = "amazon_product_url"
-        case bookDetails = "book_details"
+        case listNameEncoded = "list_name_encoded"
+        case displayName = "display_name"
+        case books
     }
+    
+    
 }
 
-// MARK: - BookDetail
-struct BookDetail: Codable {
-    let title: String
-    let bookDetailDescription: String
-    let author: String
+// MARK: - Book
+struct BestSeller: Codable {
+    let rank, weeksOnList: Int
+    let publisher, bookDescription: String
     let price: Int
-    let publisher: String
-    let primaryIsbn10: String
+    let title, author: String
+    let bookImage: String
+    let bookImageWidth, bookImageHeight: Int
+    let amazonProductURL: String
 
-    private enum CodingKeys: String, CodingKey {
-        case title
-        case bookDetailDescription = "description"
-        case author
-        case price
+    enum CodingKeys: String, CodingKey {
+        case rank
+        case weeksOnList = "weeks_on_list"
         case publisher
-        case primaryIsbn10 = "primary_isbn10"
+        case bookDescription = "description"
+        case price, title, author
+        case bookImage = "book_image"
+        case bookImageWidth = "book_image_width"
+        case bookImageHeight = "book_image_height"
+        case amazonProductURL = "amazon_product_url"
     }
 }
