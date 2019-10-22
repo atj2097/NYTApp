@@ -47,11 +47,6 @@ class BestSellersVC: UIViewController {
     
     var currentCategory: String = "combined-print-and-e-book-fiction"
 
-    var currentIsbn: String? = nil {
-        didSet {
-            loadGoogleBooksData(from: currentIsbn ?? "")
-        }
-    }
     var googleBook: VolumeInfo!
     
     // MARK: - Lifecycle Methods
@@ -77,7 +72,7 @@ class BestSellersVC: UIViewController {
                 switch result {
                 case .failure(let error):
                     //TODO: Add Alert, cannot load data
-                    print(error)
+                    print("CategoriesAPIClient: \(error)")
                 case .success(let data):
                     self.categories = data
                 }
@@ -93,25 +88,9 @@ class BestSellersVC: UIViewController {
                 switch result {
                 case .failure(let error):
                     //TODO: Add Alert, cannot load data
-                    print(error)
+                    print("BestSellerAPIClient: \(error)")
                 case .success(let data):
                     self.bestSellers = data
-                }
-            }
-        }
-    }
-    
-    private func loadGoogleBooksData(from isnb: String) {
-        let urlStr = GoogleBooksAPIClient.getSearchResultsURLStr(from: isnb)
-        
-        GoogleBooksAPIClient.manager.getGoogleBooks(urlStr: urlStr) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    //TODO: Add Alert, cannot load data
-                    print(error)
-                case .success(let data):
-                    self.googleBook = data[0].volumeInfo
                 }
             }
         }
@@ -146,7 +125,7 @@ extension BestSellersVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return categories.count
     }
 
     
@@ -154,31 +133,30 @@ extension BestSellersVC: UIPickerViewDataSource, UIPickerViewDelegate {
 
 extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: Build out cells
         return bestSellers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as! BestSellerCVCell
         let currentBestSeller = bestSellers[indexPath.row]
-        currentIsbn = currentBestSeller.bookDetails[0].primaryIsbn10
         
         
         cell.backgroundColor = .white
         cell.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
-        cell.descriptionTextView.text = "\(currentBestSeller.bookDetails[0].bookDetailDescription)"
+        cell.descriptionTextView.text = "\(currentBestSeller.bookDescription)"
         
-        let imageUrlStr = googleBook.imageLinks.thumbnail
-        
-        ImageHelper.shared.getImage(urlStr: imageUrlStr) { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let imageFromUrl):
-                cell.bookImage.image = imageFromUrl
+        let imageURLStr = currentBestSeller.bookImage
+        ImageHelper.shared.getImage(urlStr: imageURLStr) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let imageFromURL):
+                    cell.bookImage.image = imageFromURL
+                }
             }
         }
-        
+      
         
         return cell
     }
@@ -189,3 +167,49 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extension BestSellersVC {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return categories[row].listName
+    }
+}

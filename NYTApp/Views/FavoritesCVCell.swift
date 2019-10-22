@@ -34,8 +34,16 @@ class FavoritesCVCell: UICollectionViewCell {
     lazy var optionsButton: UIButton = {
         let button = UIButton()
         button.setTitle("...", for: .normal)
+        button.addTarget(self, action: #selector(optionsButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
+    
+    // MARK: - Actions
+    @objc func optionsButtonPressed(_ sender: UIButton) {
+        delegate?.showActionSheet(tag: sender.tag)
+    }
+    
+    weak var delegate: FavoriteCellDelegate?
     
     //MARK: - Override Inits
     override init(frame: CGRect) {
