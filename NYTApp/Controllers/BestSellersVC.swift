@@ -71,7 +71,7 @@ class BestSellersVC: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    //TODO: Add Alert, cannot load data
+                    self.showCategoryErrorAlert()
                     print("CategoriesAPIClient: \(error)")
                 case .success(let data):
                     self.categories = data
@@ -87,13 +87,25 @@ class BestSellersVC: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    //TODO: Add Alert, cannot load data
+                    self.showBestSellerErrorAlert()
                     print("BestSellerAPIClient: \(error)")
                 case .success(let data):
                     self.bestSellers = data
                 }
             }
         }
+    }
+    
+    private func showCategoryErrorAlert() {
+        let alertVC = UIAlertController(title: "Error", message: "Could not load Best Seller categories.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    private func showBestSellerErrorAlert() {
+        let alertVC = UIAlertController(title: "Error", message: "Could not load Best Seller books.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
     
     // MARK: - Contraint Methods
