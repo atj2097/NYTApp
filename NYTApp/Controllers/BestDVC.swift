@@ -103,7 +103,9 @@ class BestDVC: UIViewController {
     }
     
     @objc func amazonLink() {
-        
+        if let url = NSURL(string: selectedBestSeller.amazonProductURL) {
+            UIApplication.shared.openURL(url as URL)
+        }
         
         }
 
