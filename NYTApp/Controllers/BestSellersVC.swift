@@ -47,11 +47,6 @@ class BestSellersVC: UIViewController {
     
     var currentCategory: String = "combined-print-and-e-book-fiction"
 
-    var currentIsbn: String? = nil {
-        didSet {
-            loadGoogleBooksData(from: currentIsbn ?? "")
-        }
-    }
     var googleBook: VolumeInfo!
     
     // MARK: - Lifecycle Methods
@@ -77,7 +72,7 @@ class BestSellersVC: UIViewController {
                 switch result {
                 case .failure(let error):
                     //TODO: Add Alert, cannot load data
-                    print(error)
+                    print("CategoriesAPIClient: \(error)")
                 case .success(let data):
                     self.categories = data
                 }
@@ -93,25 +88,9 @@ class BestSellersVC: UIViewController {
                 switch result {
                 case .failure(let error):
                     //TODO: Add Alert, cannot load data
-                    print(error)
+                    print("BestSellerAPIClient: \(error)")
                 case .success(let data):
                     self.bestSellers = data
-                }
-            }
-        }
-    }
-    
-    private func loadGoogleBooksData(from isnb: String) {
-        let urlStr = GoogleBooksAPIClient.getSearchResultsURLStr(from: isnb)
-        
-        GoogleBooksAPIClient.manager.getGoogleBooks(urlStr: urlStr) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    //TODO: Add Alert, cannot load data
-                    print(error)
-                case .success(let data):
-                    self.googleBook = data[0].volumeInfo
                 }
             }
         }
@@ -154,31 +133,61 @@ extension BestSellersVC: UIPickerViewDataSource, UIPickerViewDelegate {
 
 extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: Build out cells
         return bestSellers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as! BestSellerCVCell
         let currentBestSeller = bestSellers[indexPath.row]
-        currentIsbn = currentBestSeller.bookDetails[0].primaryIsbn10
         
         
         cell.backgroundColor = .white
         cell.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
         cell.descriptionTextView.text = "\(currentBestSeller.bookDetails[0].bookDetailDescription)"
         
-        let imageUrlStr = googleBook.imageLinks.thumbnail
-        
-        ImageHelper.shared.getImage(urlStr: imageUrlStr) { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let imageFromUrl):
-                cell.bookImage.image = imageFromUrl
+       
+      
+            
+     
+        let googleBooksUrlStr = GoogleBooksAPIClient.getSearchResultsURLStr(from: currentBestSeller.bookDetails[0].primaryIsbn10)
+               print(googleBooksUrlStr)
+            
+         
+
+            
+            
+        DispatchQueue.global().async {
+            
+        GoogleBooksAPIClient.manager.getGoogleBooks(urlStr: googleBooksUrlStr) { (result) in
+            
+            DispatchQueue.main.async {
+                          switch result {
+                                   case .failure(let error):
+                                       //TODO: Add Alert, cannot load data
+                                       print("GoogleAPIClient: \(error)")
+                                   
+                                   case .success(let data):
+                                       self.googleBook = data[0].volumeInfo
+                                       
+                                       let imageUrlStr = self.googleBook.imageLinks.thumbnail
+                                       print(imageUrlStr)
+                                       
+                                       ImageHelper.shared.getImage(urlStr: imageUrlStr) { (result) in
+                                           DispatchQueue.main.async {
+                                               switch result {
+                                                   case .failure(let error):
+                                                       print("ImageHelper: \(error)")
+                                                   case .success(let imageFromUrl):
+                                                       cell.bookImage.image = imageFromUrl
+                                               }
+                                           }
+                                       }
+                               }
+                    }
             }
-        }
         
+       
+        }
         
         return cell
     }
