@@ -15,8 +15,7 @@ class BestSellersAPIClient {
     
     // MARK: - Instance Methods
     static func getSearchResultsURLStr(from category: String) -> String {
-        
-        return "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(Secrets.sunniNYTAPIKey)&list=\(category)"
+        return "https://api.nytimes.com/svc/books/v3/lists/current/\(category).json?api-key=\(Secrets.sunniNYTAPIKey)"
     }
     
     func getBestSellers(urlStr: String, completionHandler: @escaping (Result<[BestSeller], AppError>) -> ())  {
