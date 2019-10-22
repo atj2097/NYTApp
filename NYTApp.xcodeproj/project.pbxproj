@@ -30,7 +30,6 @@
 		A5174711235A4B150092C15C /* BestSellerPersistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174710235A4B150092C15C /* BestSellerPersistManager.swift */; };
 		A5174713235A4B440092C15C /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5174712235A4B440092C15C /* PersistenceHelper.swift */; };
 		A5DC950A235E33CD00BF10EA /* CellDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DC9509235E33CD00BF10EA /* CellDelegation.swift */; };
-		EA0EF725235A614D00A1D6D0 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF724235A614D00A1D6D0 /* Secrets.swift */; };
 		EA0EF729235A678000A1D6D0 /* CategoryJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF728235A678000A1D6D0 /* CategoryJSON.json */; };
 		EA0EF72D235A68B000A1D6D0 /* GoogleBookJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */; };
 		EA0EF72F235DFF6600A1D6D0 /* CategoryJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0EF728235A678000A1D6D0 /* CategoryJSON.json */; };
@@ -81,7 +80,6 @@
 		A5174710235A4B150092C15C /* BestSellerPersistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerPersistManager.swift; sourceTree = "<group>"; };
 		A5174712235A4B440092C15C /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		A5DC9509235E33CD00BF10EA /* CellDelegation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDelegation.swift; sourceTree = "<group>"; };
-		EA0EF724235A614D00A1D6D0 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		EA0EF728235A678000A1D6D0 /* CategoryJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CategoryJSON.json; sourceTree = "<group>"; };
 		EA0EF72C235A68B000A1D6D0 /* GoogleBookJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoogleBookJSON.json; sourceTree = "<group>"; };
 		EA0EF734235F47D800A1D6D0 /* BestSeller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSeller.swift; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 			children = (
 				A5DC9508235E33A300BF10EA /* Protocols */,
 				A517470D235A4A590092C15C /* Persistence */,
-				A517470A235A49D20092C15C /* Confidential */,
 				A5174703235A49670092C15C /* Models */,
 				A51746F5235A48160092C15C /* Networking */,
 				A51746F0235A47CB0092C15C /* Views */,
@@ -204,14 +201,6 @@
 				A5174708235A499D0092C15C /* GoogleBook.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		A517470A235A49D20092C15C /* Confidential */ = {
-			isa = PBXGroup;
-			children = (
-				EA0EF724235A614D00A1D6D0 /* Secrets.swift */,
-			);
-			path = Confidential;
 			sourceTree = "<group>";
 		};
 		A517470D235A4A590092C15C /* Persistence */ = {
@@ -359,7 +348,6 @@
 				A5174707235A498F0092C15C /* Category.swift in Sources */,
 				A51746F2235A48000092C15C /* BestSellerCVCell.swift in Sources */,
 				A5174700235A48C90092C15C /* AppErrorHandler.swift in Sources */,
-				EA0EF725235A614D00A1D6D0 /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
