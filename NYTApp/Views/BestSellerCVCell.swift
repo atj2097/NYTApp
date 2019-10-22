@@ -13,12 +13,14 @@ class BestSellerCVCell: UICollectionViewCell {
     // MARK: - UI Objects
     lazy var bookImage: UIImageView = {
         let iv = UIImageView()
+        iv.layer.cornerRadius = 15
         iv.backgroundColor = .red
         return iv
     }()
     
     lazy var weeksOnListLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 14.0)
         label.backgroundColor = .white
         label.textColor = .black
         return label
@@ -26,6 +28,7 @@ class BestSellerCVCell: UICollectionViewCell {
     
     lazy var descriptionTextView: UITextView = {
       let tv = UITextView()
+        tv.font = UIFont(name: "AmericanTypewriter", size: 13.0)
         tv.isScrollEnabled = true
         tv.backgroundColor = .white
         tv.textColor = .black
@@ -56,7 +59,7 @@ class BestSellerCVCell: UICollectionViewCell {
     private func configureBookImageContraints() {
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         
-        [bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0), bookImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor), bookImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5), bookImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5)].forEach({$0.isActive = true})
+        [bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0), bookImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor), bookImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5), bookImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7)].forEach({$0.isActive = true})
     }
     
     private func configureListLabelContraints() {
