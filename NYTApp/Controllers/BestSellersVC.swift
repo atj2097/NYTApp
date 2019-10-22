@@ -31,6 +31,24 @@ class BestSellersVC: UIViewController {
         return picker
     }()
 
+    // MARK: - Internal Properties
+    var bestSellers = [BestSeller]() {
+        didSet {
+            bestSellerCV.reloadData()
+        }
+    }
+    
+    var categories = [Category]() {
+        didSet {
+            categoryPicker.reloadAllComponents()
+            loadBestSellerData()
+        }
+    }
+    
+    var currentCategory: String = "combined-print-and-e-book-fiction"
+
+    var googleBook: VolumeInfo!
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +58,45 @@ class BestSellersVC: UIViewController {
         configurePickerConstriants()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadCategoriesData()
+    }
     
-    // MARK: Contraint Methods
+    // MARK: - Private functions
+    
+    private func loadCategoriesData() {
+        let urlStr = CategoriesAPIClient.getSearchResultsURLStr()
+        
+        CategoriesAPIClient.manager.getCategories(urlStr: urlStr) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    //TODO: Add Alert, cannot load data
+                    print("CategoriesAPIClient: \(error)")
+                case .success(let data):
+                    self.categories = data
+                }
+            }
+        }
+    }
+    
+    private func loadBestSellerData() {
+        let urlStr = BestSellersAPIClient.getSearchResultsURLStr(from: currentCategory)
+    
+        BestSellersAPIClient.manager.getBestSellers(urlStr: urlStr) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    //TODO: Add Alert, cannot load data
+                    print("BestSellerAPIClient: \(error)")
+                case .success(let data):
+                    self.bestSellers = data
+                }
+            }
+        }
+    }
+    
+    // MARK: - Contraint Methods
     private func addSubViews() {
         self.view.addSubview(bestSellerCV)
         self.view.addSubview(categoryPicker)
@@ -78,14 +133,63 @@ extension BestSellersVC: UIPickerViewDataSource, UIPickerViewDelegate {
 
 extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: Build out cells
-        return 10
+        return bestSellers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as? BestSellerCVCell
-        cell?.backgroundColor = .white
-        return cell!
+        let cell = bestSellerCV.dequeueReusableCell(withReuseIdentifier: "BestSellerCVCell", for: indexPath) as! BestSellerCVCell
+        let currentBestSeller = bestSellers[indexPath.row]
+        
+        
+        cell.backgroundColor = .white
+        cell.weeksOnListLabel.text = "\(currentBestSeller.weeksOnList) weeks on Best Seller list"
+        cell.descriptionTextView.text = "\(currentBestSeller.bookDetails[0].bookDetailDescription)"
+        
+       
+      
+            
+     
+        let googleBooksUrlStr = GoogleBooksAPIClient.getSearchResultsURLStr(from: currentBestSeller.bookDetails[0].primaryIsbn10)
+               print(googleBooksUrlStr)
+            
+         
+
+            
+            
+        DispatchQueue.global().async {
+            
+        GoogleBooksAPIClient.manager.getGoogleBooks(urlStr: googleBooksUrlStr) { (result) in
+            
+            DispatchQueue.main.async {
+                          switch result {
+                                   case .failure(let error):
+                                       //TODO: Add Alert, cannot load data
+                                       print("GoogleAPIClient: \(error)")
+                                   
+                                   case .success(let data):
+                                       self.googleBook = data[0].volumeInfo
+                                       
+                                       let imageUrlStr = self.googleBook.imageLinks.thumbnail
+                                       print(imageUrlStr)
+                                       
+                                       ImageHelper.shared.getImage(urlStr: imageUrlStr) { (result) in
+                                           DispatchQueue.main.async {
+                                               switch result {
+                                                   case .failure(let error):
+                                                       print("ImageHelper: \(error)")
+                                                   case .success(let imageFromUrl):
+                                                       cell.bookImage.image = imageFromUrl
+                                               }
+                                           }
+                                       }
+                               }
+                    }
+            }
+        
+       
+        }
+        
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
