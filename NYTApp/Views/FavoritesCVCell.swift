@@ -20,7 +20,7 @@ class FavoritesCVCell: UICollectionViewCell {
     lazy var weeksOnListLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
-        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 14.0)
+        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 17.0)
         label.textColor = .black
         return label
     }()
@@ -29,7 +29,7 @@ class FavoritesCVCell: UICollectionViewCell {
       let tv = UITextView()
         tv.isScrollEnabled = true
         tv.backgroundColor = .white
-        tv.font = UIFont(name: "AmericanTypewriter", size: 13.0)
+        tv.font = UIFont(name: "AmericanTypewriter", size: 15.0)
         tv.textColor = .black
         return tv
     }()
