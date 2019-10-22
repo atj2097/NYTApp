@@ -114,11 +114,9 @@ class BestSellersVC: UIViewController {
         self.view.addSubview(categoryPicker)
     }
     
-    
     private func configureBestSellerCV() {
         bestSellerCV.translatesAutoresizingMaskIntoConstraints = false
         [bestSellerCV.topAnchor.constraint(equalTo: self.view.topAnchor), bestSellerCV.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),bestSellerCV.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), bestSellerCV.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)].forEach({$0.isActive = true})
-        
     }
     
     private func configurePickerConstriants() {
@@ -127,7 +125,6 @@ class BestSellersVC: UIViewController {
         [categoryPicker.topAnchor.constraint(equalTo: bestSellerCV.bottomAnchor), categoryPicker.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryPicker.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryPicker.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)].forEach({$0.isActive = true})
     }
     
-
 }
 
 // MARK: - Extensions
@@ -139,7 +136,6 @@ extension BestSellersVC: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return categories.count
     }
-
     
 }
 
@@ -169,7 +165,6 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
                 }
             }
         }
-      
         
         return cell
     }
