@@ -13,12 +13,14 @@ class FavoritesCVCell: UICollectionViewCell {
     lazy var bookImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .red
+        iv.layer.cornerRadius = 15
         return iv
     }()
     
     lazy var weeksOnListLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
+        label.font = UIFont(name: "AmericanTypewriter-CondensedBold", size: 14.0)
         label.textColor = .black
         return label
     }()
@@ -27,6 +29,7 @@ class FavoritesCVCell: UICollectionViewCell {
       let tv = UITextView()
         tv.isScrollEnabled = true
         tv.backgroundColor = .white
+        tv.font = UIFont(name: "AmericanTypewriter", size: 13.0)
         tv.textColor = .black
         return tv
     }()
