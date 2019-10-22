@@ -125,7 +125,7 @@ extension BestSellersVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return categories.count
     }
 
     
@@ -167,3 +167,49 @@ extension BestSellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extension BestSellersVC {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return categories[row].listName
+    }
+}
