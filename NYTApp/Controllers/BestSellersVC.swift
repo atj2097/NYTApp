@@ -72,11 +72,11 @@ class BestSellersVC: UIViewController {
     // MARK: - Private functions
     
     private func loadUserDefaults() {
-        if UserDefaultsWrapper.manager.getFavCats() != nil {
+        if UserDefaultsWrapper.manager.getFavCats() != "" {
         currentCategory = UserDefaultsWrapper.manager.getFavCats()!
         }
         else {
-            currentCategory = "manga"
+            currentCategory = "combined-print-and-e-book-fiction"
         }
     }
     
