@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Stripe
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?

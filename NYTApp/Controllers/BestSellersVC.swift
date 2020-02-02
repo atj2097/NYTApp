@@ -137,7 +137,6 @@ class BestSellersVC: UIViewController {
     
     private func configurePickerConstriants() {
         categoryPicker.translatesAutoresizingMaskIntoConstraints = false
-        
         [categoryPicker.topAnchor.constraint(equalTo: bestSellerCV.bottomAnchor), categoryPicker.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryPicker.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryPicker.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)].forEach({$0.isActive = true})
     }
     

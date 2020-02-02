@@ -38,6 +38,15 @@ class BestDVC: UIViewController {
         return textField
     }()
     
+    lazy var paymentButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "Purchase"
+        button.backgroundColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.textColor = .white
+        button.addTarget(self, action: #selector(purchaseBook), for: .touchUpInside)
+        return button
+    }()
     
     lazy var amazonIcon: UIButton = {
         var amazonIcon = UIButton(frame: .zero)
@@ -114,12 +123,18 @@ class BestDVC: UIViewController {
             UIApplication.shared.openURL(url as URL)
         }
     }
+    @objc func purchaseBook() {
+        let checkoutVC = CheckoutViewController()
+        checkoutVC.modalPresentationStyle = .fullScreen
+        self.present(checkoutVC, animated: true, completion: nil)
+    }
 
     // MARK: - Contraint Methods
     private func addSubViews() {
         self.view.addSubview(bookImage)
         self.view.addSubview(descriptionTextField)
         self.view.addSubview(amazonIcon)
+        self.view.addSubview(paymentButton)
     }
     
     private func setBookImageViewConstraints() {
@@ -134,6 +149,9 @@ class BestDVC: UIViewController {
         //Button
         amazonIcon.translatesAutoresizingMaskIntoConstraints = false
         [amazonIcon.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5),amazonIcon.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),amazonIcon.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),amazonIcon.widthAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)].forEach({$0.isActive = true})
+        
+        paymentButton.translatesAutoresizingMaskIntoConstraints = false
+        [paymentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75),paymentButton.widthAnchor.constraint(equalToConstant: 150),paymentButton.heightAnchor.constraint(equalToConstant: 50),paymentButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)].forEach({$0.isActive = true})
         
     }
     
